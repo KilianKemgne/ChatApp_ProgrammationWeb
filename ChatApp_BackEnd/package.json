@@ -1,0 +1,22 @@
+{
+  "name": "chatapp_backend",
+  "version": "1.0.0",
+  "description": "Simple Chat Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KilianKemgne/ChatApp_ProgrammationWeb.git"
+  },
+  "author": "GI 2024",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KilianKemgne/ChatApp_ProgrammationWeb/issues"
+  },
+  "homepage": "https://github.com/KilianKemgne/ChatApp_ProgrammationWeb#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
