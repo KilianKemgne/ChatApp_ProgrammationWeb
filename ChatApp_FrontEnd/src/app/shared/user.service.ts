@@ -37,4 +37,8 @@ export class UserService {
   forgotPassword(phoneNumber) {
     return this.http.post('/forgotPassword', phoneNumber)
   }
+
+  verifyCode(code) {
+    return this.http.post('/verifyCode', code)
+  }
 }

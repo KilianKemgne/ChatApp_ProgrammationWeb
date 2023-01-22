@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '../../pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
 import { ForgotPasswordComponent } from '../../pages/forgotPassword/forgotPassword.component';
+import { CodeVerifyComponent } from 'src/app/pages/codeVerify/codeVerify.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -18,7 +19,8 @@ import { ForgotPasswordComponent } from '../../pages/forgotPassword/forgotPasswo
   declarations: [
     LoginComponent,
     RegisterComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    CodeVerifyComponent
   ]
 })
 export class AuthLayoutModule { }

@@ -13,7 +13,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/importContact',       title: 'Import Contact',         icon: 'fa-solid fa-id-badge text-success',       class: '',},
     { path: '/contacts',       title: 'Contacts',         icon: 'fa-solid fa-address-card text-success',       class: '',},
     { path: '/sendMessage',       title: 'New Message',         icon: 'fa-solid fa-message text-success',       class: '',},
-    { path: '/messages',       title: 'Messages',         icon: 'fa-regular fa-message-lines text-success',       class: '',},
+    { path: '/messages',       title: 'Messages',         icon: 'bx bxs-chat text-success',       class: '',},
 ];
 
 @Component({

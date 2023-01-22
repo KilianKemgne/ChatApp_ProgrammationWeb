@@ -12,6 +12,7 @@ export class ForgotPasswordComponent implements OnInit{
   constructor(public userService: UserService,private router : Router) { }
   showSucessMessage: string;
   serverErrorMessages: string;
+  phoneNumberRegex = /^6[0-9]{8}$/
   ngOnInit() {
     
   }
@@ -20,7 +21,7 @@ export class ForgotPasswordComponent implements OnInit{
     this.userService.forgotPassword(form.value).subscribe(
       res => {
         this.showSucessMessage = 'The code has been send to your phone number please verify it';
-        //this.router.navigateByUrl('/login');
+        this.router.navigateByUrl('/verifyCode');
       },
       err => {
         if (err.status === 422) {

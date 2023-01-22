@@ -20,43 +20,40 @@
     <div class="row justify-content-center">
       <div class="col-lg-5 col-md-7">
         <div class="card bg-secondary shadow border-0">
-          <div class="card-header bg-transparent pb-5">
-            <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
-            <div class="btn-wrapper text-center">
-              <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-                <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
-                <span class="btn-inner--text">Google</span>
-              </a>
-            </div>
-          </div>
           <div class="card-body px-lg-5 py-lg-5">
-            <div class="text-center text-muted mb-4">
-              <small>Or sign in with credentials</small>
-            </div>
-            <form #codeVerificationForm="ngForm" (ngSubmit)="codeVerificationForm.valid && onSubmit(codeVerificationForm)">
-              <!-- <div class="form-group">
-                <div class="input-group input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                  </div>
-                  <input class="form-control" type="text" name="username" placeholder="UserName" #userName="ngModel" [(ngModel)]="model.userName"
-                  required [ngClass]="{'invalid-textbox' :codeVerificationForm.submitted && !codeVerificationForm.valid }">
-                </div>
-              </div> -->
-              <div class="input-field">
-                <input type="number" />
-                <input type="number" disabled />
-                <input type="number" disabled />
-                <input type="number" disabled />
+            <div class="container-code">
+                <header>
+                  <i class="bx bxs-check-shield"></i>
+                </header>
+                <h4>Enter Code</h4>
+                <form #codeVerificationForm="ngForm" (ngSubmit)="codeVerificationForm.valid && onSubmit(codeVerificationForm)">
+                    <!-- <div class="form-group">
+                      <div class="input-group input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                        </div>
+                        <input class="form-control" type="text" name="username" placeholder="UserName" #userName="ngModel" [(ngModel)]="model.userName"
+                        required [ngClass]="{'invalid-textbox' :codeVerificationForm.submitted && !codeVerificationForm.valid }">
+                      </div>
+                    </div> -->
+                    <div class="input-field">
+                      <input type="number" maxlength="1"/>
+                      <input type="number" maxlength="1" disabled />
+                      <input type="number" maxlength="1" disabled />
+                      <input type="number" maxlength="1" disabled />
+                    </div>
+
+                    <input class="btn" type="submit" value="Verify">
+                    <!-- <div *ngIf="signInForm.submitted && userName.errors">
+                      <label *ngIf="emailAddress.errors.pattern" class="validation-message">Invalid code.</label>
+                    </div> -->
+                  </form>
               </div>
-              <div *ngIf="signInForm.submitted && userName.errors">
-                <label *ngIf="emailAddress.errors.pattern" class="validation-message">Invalid code.</label>
-              </div>
-            </form>
+            
             <!-- Error message -->
-            <div class="alert" *ngIf="serverErrorMessages">
+            <!-- <div class="alert" *ngIf="serverErrorMessages">
               {{serverErrorMessages}}
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
