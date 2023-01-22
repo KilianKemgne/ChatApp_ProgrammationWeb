@@ -1,0 +1,36 @@
+
+const express = require("express")
+const variable = require('./variables/Variables')
+const routerConnexion = require('./endpoints/Connexion')
+const routerInscription = require('./endpoints/Inscription')
+const routerForgotPassword = require('./endpoints/RecuperationMotDePasse')
+const routerPublic = require('./endpoints/Public')
+const routerSMS = require('./endpoints/EnvoiSMS')
+const routerMessages = require('./endpoints/SauvegardeRecuperationMessages')
+const routerContacts = require('./endpoints/SauvegardeRecuperationContacts')
+
+const app = express()
+
+const port = variable.PORT
+const host = variable.HOST
+
+
+// pour les requetes post (on doit utiliser le middleware pour la gestion des json)
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+app.use(express.static('static'))
+
+
+// definissons nos routes
+app.use('/', routerPublic) // exposition du endpoint public
+app.use('/connexion', routerConnexion) // exposition du endpoint connexion
+app.use('/inscription', routerInscription) // exposition du endpoint d'inscription
+app.use('/forgot-password', routerForgotPassword) // exposition du endpoint de mot de passe oubie
+app.use('/sms', routerSMS) // exposition du endpoint d'envoi de sms
+app.use('/messages', routerMessages) // exposition du endpoint de sauvegarde et de recuperation de messages
+app.use('/contacts', routerContacts) // exposition du endpoint de sauvegarde et de recuperation de contacts
+
+
+app.listen(port, ()=>{
+    console.log(`Server running on http://${host}:${port}`)
+})
