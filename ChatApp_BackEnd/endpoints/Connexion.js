@@ -58,8 +58,10 @@ async function checkUser(username, password) {
             }
         }).then((res)=>{
             console.log(res)
-            id = res.dataValues.id
-            phonenumber = res.dataValues.phonenumber
+            if(res != null){
+                id = res.dataValues.id
+                phonenumber = res.dataValues.phonenumber
+            }
         }).catch((error)=>{
             console.error("Echec de recherche des utilisateurs", error)
         })
@@ -84,7 +86,7 @@ router.post('/', (req, res, next)=>{
         // on va juste patienter 50 millisecondes pour que le resultat de la requete soit disponible
         if(id == undefined || phonenumber == undefined){
             //on retourne une erreur
-            res.send("erreur")// on renvoi une erreur
+            res.send({})// on renvoi une erreur
         }
         else{
             //on renvoi le resultat (on ne lui envoi pas le password)

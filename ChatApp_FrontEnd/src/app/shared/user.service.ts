@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { User } from './user.model';
@@ -22,8 +23,17 @@ export class UserService {
     return this.http.post('/register',user);
   }
 
-  login(authCredentials) {
-    return this.http.post('/authenticate', authCredentials);
+  // login(authCredentials) {
+  //   // avec environment.apiBaseUrl = 'http://127.0.0.1:5000'
+  //   return this.http.post(environment.apiBaseUrl+'/connexion', authCredentials);
+  // }
+
+  login(authCredentials): Observable<any> {
+    const headers = {'content-type': 'application/json'}  
+    // const body=JSON.stringify(authCredentials);
+    const body = authCredentials;
+    console.log(body)
+    return this.http.post(environment.apiBaseUrl+'/connexion', body,{'headers':headers})
   }
 
   getUserProfile() {

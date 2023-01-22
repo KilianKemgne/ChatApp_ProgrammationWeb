@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    console.log(form.value)
     this.userService.postUser(form.value).subscribe(
       res => {
         this.showSucessMessage = true;
