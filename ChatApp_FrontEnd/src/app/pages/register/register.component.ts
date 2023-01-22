@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
 
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   showSucessMessage: boolean;
-  serverErrorMessages: string;
+  serverErrorMessages: boolean;
   phoneNumberRegex = /^6[0-9]{8}$/
 
   constructor(public userService: UserService,private router : Router) { }
@@ -25,17 +25,25 @@ export class RegisterComponent implements OnInit {
     console.log(form.value)
     this.userService.postUser(form.value).subscribe(
       res => {
-        this.showSucessMessage = true;
-        setTimeout(() => this.showSucessMessage = false, 4000);
-        this.resetForm(form);
-        this.router.navigateByUrl('/login');
+        if(Object.keys(res).length == 0){
+          console.log('Utilisateur deja existant', res)
+          this.serverErrorMessages = true;
+        }
+        else{
+          console.log('Utilisateur ajoute avec succes', res)
+          this.showSucessMessage = true;
+          setTimeout(() => this.showSucessMessage = false, 4000);
+          alert('Saved successfully')
+          this.resetForm(form);
+          this.router.navigateByUrl('/login');
+        }
       },
       err => {
         if (err.status === 422) {
-          this.serverErrorMessages = err.error.join('<br/>');
+          this.serverErrorMessages = true;
         }
         else
-          this.serverErrorMessages = 'Something went wrong.Please contact admin.';
+          this.serverErrorMessages = true;
       }
     );
   }
@@ -48,6 +56,6 @@ export class RegisterComponent implements OnInit {
       password: '',
     };
     form.resetForm();
-    this.serverErrorMessages = '';
+    this.serverErrorMessages = false;
   }
 }
