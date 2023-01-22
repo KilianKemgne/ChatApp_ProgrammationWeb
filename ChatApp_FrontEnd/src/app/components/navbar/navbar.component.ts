@@ -24,6 +24,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onLogout(){
+    // on envoi un signal au serveur avant de se deconnecter
     this.router.navigate(['/login']);
   }
 

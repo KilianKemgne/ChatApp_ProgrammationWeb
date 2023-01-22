@@ -33,7 +33,11 @@ const User = sequelize.define("users",{
     phonenumber:{
         type: DataTypes.INTEGER,
         allowNull: false
-    }
+    }, 
+    // emailaddress:{
+    //     type: DataTypes.STRING,
+    //     allowNull: true
+    // }
 })
 
 const SMS = sequelize.define("sms",{

@@ -40,36 +40,52 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                 </div>
-                <input class="form-control" type="text" name="username" placeholder="UserName"
-                required>
+                <input class="form-control" type="text" name="username" placeholder="UserName" #userName="ngModel" [(ngModel)]="userService.selectedUser.userName"
+                required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !userName.valid }">
               </div>
+            </div>
+            <div *ngIf="signUpForm.submitted && userName.errors">
+              <label *ngIf="emailAddress.errors.required" class="validation-message">This field is required.</label>
+              <label *ngIf="emailAddress.errors.pattern" class="validation-message">Invalid email address.</label>
             </div>
             <div class="form-group">
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
-                <input class="form-control" type="email" name="emailAddress" placeholder="Email"
-                required [pattern]="emailRegex">
+                <input class="form-control" type="text" #emailAddress="ngModel" [(ngModel)]="userService.selectedUser.emailAddress" name="emailAddress" placeholder="Email"
+                required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !emailAddress.valid }">
               </div>
+            </div>
+            <div *ngIf="signUpForm.submitted && emailAddress.errors">
+              <label *ngIf="emailAddress.errors.required" class="validation-message">This field is required.</label>
+              <label *ngIf="emailAddress.errors.pattern" class="validation-message">Invalid email address.</label>
             </div>
             <div class="form-group">
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+                  <span class="input-group-text"><i class="ni ni-tablet-button"></i></span>
                 </div>
-                <input class="form-control" type="tel" name="phoneNumber" placeholder="Phone Number" [pattern]="phoneNumberRegex"
-                required>
+                <input class="form-control" type="tel" #phoneNumber="ngModel" [(ngModel)]="userService.selectedUser.phoneNumber" name="phoneNumber" placeholder="Phone Number" [pattern]="phoneNumberRegex"
+                required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !phoneNumber.valid }">
               </div>
+            </div>
+            <div *ngIf="signUpForm.submitted && !phoneNumber.valid">
+              <label *ngIf="phoneNumber.errors.required" class="validation-message">This field is required.</label>
+              <label *ngIf="phoneNumber.errors.pattern" class="validation-message">Invalid phone number.</label>
             </div>
             <div class="form-group">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
-                <input class="form-control" type="password" name="password" placeholder="Password"
-                minlength="4" required >
+                <input class="form-control" type="password" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password" placeholder="Password"
+                minlength="4" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }">
               </div>
+            </div>
+            <div *ngIf="signUpForm.submitted && password.errors">
+              <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
+              <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 8 characters.</label>
             </div>
             <div class="row my-4">
               <div class="col-12">
@@ -94,7 +110,7 @@
           
           <!-- Error message -->
           <div class="alert" *ngIf="serverErrorMessages">
-            {{serverErrorMessages}}
+            {{'Erreur lors de l\'enregistrement (Cet utilisateur existe deja)'}}
           </div>
         </div>
       </div>

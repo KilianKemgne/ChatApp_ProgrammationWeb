@@ -39,18 +39,26 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                 </div>
-                <input class="form-control" type="text" name="username" placeholder="UserName"
-                required>
+                <input class="form-control" type="text" name="username" placeholder="UserName" #userName="ngModel" [(ngModel)]="model.userName"
+                required [ngClass]="{'invalid-textbox' :signInForm.submitted && !userName.valid }">
               </div>
+            </div>
+            <div *ngIf="signInForm.submitted && userName.errors">
+              <label *ngIf="emailAddress.errors.required" class="validation-message">This field is required.</label>
+              <label *ngIf="emailAddress.errors.pattern" class="validation-message">Invalid username.</label>
             </div>
             <div class="form-group">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
-                <input class="form-control" type="password" name="password" placeholder="Password" required minlength="8"
-                    >
+                <input class="form-control" type="password" name="password" #password="ngModel" [(ngModel)]="model.password" placeholder="Password" required minlength="8"
+                    [ngClass]="{'invalid-textbox' :signInForm.submitted && !password.valid }">
+              </div>
             </div>
+            <div *ngIf="signInForm.submitted && password.errors">
+              <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
+              <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 8 characters.</label>
             </div>
             <div class="custom-control custom-control-alternative custom-checkbox">
               <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
@@ -65,7 +73,7 @@
           </form>
           <!-- Error message -->
           <div class="alert" *ngIf="serverErrorMessages">
-            {{serverErrorMessages}}
+            <label style="color: red">Identifiants incorrectes !</label>
           </div>
         </div>
       </div>

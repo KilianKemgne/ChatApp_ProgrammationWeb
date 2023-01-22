@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: ''
+  apiBaseUrl: 'http://127.0.0.1:5000' // adresse de notre serveur
 };
 
 /*
