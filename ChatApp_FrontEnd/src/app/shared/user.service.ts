@@ -34,7 +34,6 @@ export class UserService {
 
   login(authCredentials): Observable<any> {
     const headers = {'content-type': 'application/json'}  
-    // const body=JSON.stringify(authCredentials);
     const body = authCredentials;
     console.log(body)
     return this.http.post(environment.apiBaseUrl+'/connexion', body,{'headers':headers})
@@ -48,8 +47,11 @@ export class UserService {
       return false;
   }
 
-  forgotPassword(phoneNumber) {
-    return this.http.post('/forgotPassword', phoneNumber)
+  forgotPassword(phoneNumber): Observable<any>  {
+    const headers = {'content-type': 'application/json'}  
+    const body = phoneNumber;
+    console.log(body)
+    return this.http.post(environment.apiBaseUrl+'/forgot-password', body,{'headers':headers})
   }
 
   verifyCode(code) {
