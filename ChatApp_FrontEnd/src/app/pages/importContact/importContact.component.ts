@@ -7,7 +7,7 @@ declare interface TableData {
 }
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-importContact',
   templateUrl: './importContact.component.html',
   styleUrls: ['./importContact.component.scss']
 })

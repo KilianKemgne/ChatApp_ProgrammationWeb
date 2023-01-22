@@ -3,11 +3,11 @@ import { NgForm } from '@angular/forms';
 import {Router} from "@angular/router"
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-forgotPassword',
+  templateUrl: './forgotPassword.component.html',
+  styleUrls: ['./forgotPassword.component.scss']
 })
-export class LoginComponent implements OnInit{
+export class ForgotPasswordComponent implements OnInit{
   constructor() { }
 
   serverErrorMessages: string;

@@ -7,7 +7,7 @@ declare interface TableData {
 }
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-messages',
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.scss']
 })
