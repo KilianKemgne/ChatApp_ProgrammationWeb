@@ -24,6 +24,21 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static('static'))
 
 
+// gestion de la session (OK)
+const cookieParser = require("cookie-parser");
+const session = require('express-session');
+
+const oneDay = 1000 * 60 * 60 * 24; // la session est automatiquement detruite au bout de 24h
+app.use(session({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized:true,
+    cookie: { maxAge: oneDay },
+    resave: false
+}));
+// cookie parser middleware
+app.use(cookieParser());
+
+
 // definissons nos routes
 app.use('/', routerPublic) // exposition du endpoint public 
 app.use('/connexion', routerConnexion) // exposition du endpoint connexion

@@ -19,8 +19,12 @@ export class UserService {
 
   constructor(private http: HttpClient) { } 
 
-  postUser(user: User){
-    return this.http.post('/register',user);
+  postUser(user: User): Observable<any> {
+    const headers = {'content-type': 'application/json'}  
+    // const body=JSON.stringify(authCredentials);
+    const body = user;
+    console.log(body)
+    return this.http.post(environment.apiBaseUrl+'/inscription', body,{'headers':headers})
   }
 
   // login(authCredentials) {

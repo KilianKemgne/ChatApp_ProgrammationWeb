@@ -89,10 +89,21 @@ router.post('/', (req, res, next)=>{
             res.send({})// on renvoi une erreur
         }
         else{
+            if(!req.session.sessionid){
+                req.session.sessionid = id.toString(10)+phonenumber.toString(10);
+                req.session.userid = id
+                req.session.username = username
+                console.log(`Vous etes connectes, bienvenue ${username} !`)
+                console.log(req.session)
+            }
+            else{
+                console.log('vous etes deja connectes')
+                console.log(req.session) 
+            }
             //on renvoi le resultat (on ne lui envoi pas le password)
             res.send({'id': id, 'username': username, 'phonenumber': phonenumber})
         }
-    }, 50)
+    }, 100)
 
 })
 
