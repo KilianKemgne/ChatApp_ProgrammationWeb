@@ -70,6 +70,8 @@ const Contact = sequelize.define("contacts",{
     }
 })
 
+
+
 sequelize.sync().then(()=>{
     console.log('Toutes les Tables ont ete crees avec succes')
 }).catch((error)=>{
