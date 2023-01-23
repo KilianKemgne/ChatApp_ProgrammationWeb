@@ -114,7 +114,7 @@ router.get('/sms/:contactId', async (req, res, next) => {
 
 //GET /sms/groupby
 //GET Request to get all SMS grouped by contact
-router.get('/sms/congroupby', async (req, res, next) => {
+router.get('/congroupby', async (req, res, next) => {
     // "/?order=desc"  // from the newest to the oldest
     // "/?order=asc"   // from the oldest to the newest
 
