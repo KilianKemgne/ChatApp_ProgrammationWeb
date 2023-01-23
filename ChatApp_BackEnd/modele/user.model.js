@@ -33,11 +33,41 @@ const User = sequelize.define("users",{
     phonenumber:{
         type: DataTypes.INTEGER,
         allowNull: false
-    }, 
-    // emailaddress:{
-    //     type: DataTypes.STRING,
-    //     allowNull: true
-    // }
+    }
+})
+
+const SMS = sequelize.define("sms",{
+    content:{
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    creationdate:{
+        type: DataTypes.DATEONLY,
+        allowNull: false
+    },
+    iduser:{
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    idcontact:{
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
+})
+
+const Contact = sequelize.define("contacts",{
+    username:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    phonenumber:{
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    iduser:{
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
 })
 
 sequelize.sync().then(()=>{
@@ -46,3 +76,13 @@ sequelize.sync().then(()=>{
     console.error('Impossible de creer cette table')
 })
 
+
+//sequelize.close() // pour fermer la connexion
+
+//Exportation des tables, pour pouvoir les utiliser dans les autres fichiers
+module.exports = {
+    User,
+    SMS,
+    Contact,
+    sequelize
+}

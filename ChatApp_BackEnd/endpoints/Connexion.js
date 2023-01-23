@@ -58,10 +58,8 @@ async function checkUser(username, password) {
             }
         }).then((res)=>{
             console.log(res)
-            if(res != null){
-                id = res.dataValues.id
-                phonenumber = res.dataValues.phonenumber
-            }
+            id = res.dataValues.id
+            phonenumber = res.dataValues.phonenumber
         }).catch((error)=>{
             console.error("Echec de recherche des utilisateurs", error)
         })
@@ -86,24 +84,13 @@ router.post('/', (req, res, next)=>{
         // on va juste patienter 50 millisecondes pour que le resultat de la requete soit disponible
         if(id == undefined || phonenumber == undefined){
             //on retourne une erreur
-            res.send({})// on renvoi une erreur
+            res.send("erreur")// on renvoi une erreur
         }
         else{
-            if(!req.session.sessionid){
-                req.session.sessionid = id.toString(10)+phonenumber.toString(10);
-                req.session.userid = id
-                req.session.username = username
-                console.log(`Vous etes connectes, bienvenue ${username} !`)
-                console.log(req.session)
-            }
-            else{
-                console.log('vous etes deja connectes')
-                console.log(req.session) 
-            }
             //on renvoi le resultat (on ne lui envoi pas le password)
             res.send({'id': id, 'username': username, 'phonenumber': phonenumber})
         }
-    }, 100)
+    }, 50)
 
 })
 
