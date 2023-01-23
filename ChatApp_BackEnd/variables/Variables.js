@@ -3,13 +3,13 @@
 const Variable = {
     // pour le serveur 
     HOST: '127.0.0.1',
-    PORT: '5000',
+    PORT: '3000',
     // pour la bd
     DB_NAME: 'parrotdb',
     USER_NAME: 'root',
-    USER_PASSWORD: 'songuon2003*',
+    USER_PASSWORD: 'root',
     DB_PORT: '3306',
-    DB_HOST: '127.0.0.1',
+    DB_HOST: '127.0.0.2',
     DB_DIALECT: 'mysql'
 
 }
