@@ -1,19 +1,13 @@
+
 const express = require('express')
 const router = express.Router()
 
-const {SMS, sequelize} = require('../modele/user.model')
-
-/*
-//ajouter un sms de test
-SMS.create({
-    content: 'test',
-    creationdate:  new Date(),
-    iduser: 1,
-    idcontact: 1
-}).then((sms)=>{
-    console.log(sms)
+router.get('/', (req, res, next)=>{
+    // pour la sauvegarde et la recuperation de messages
+    res.send('Sauvegarde et la recuperation de messages !')
 })
 
+<<<<<<< HEAD
 
 console.log("Finding all SMS")
 console.log("SMS", SMS)
@@ -198,4 +192,6 @@ createSMS("Bonjour 4", 1, [4])
 
 testFunction()*/
 
+=======
+>>>>>>> parent of 343e4a6 (Sauvegarde et Recuperation des messages)
 module.exports = router

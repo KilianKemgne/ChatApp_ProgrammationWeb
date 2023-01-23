@@ -33,58 +33,27 @@ const User = sequelize.define("users",{
     phonenumber:{
         type: DataTypes.INTEGER,
         allowNull: false
-    }
-})
-
-const SMS = sequelize.define("sms",{
-    content:{
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    creationdate:{
-        type: DataTypes.DATEONLY,
-        allowNull: false
-    },
-    iduser:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    idcontact:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }
-})
-
-const Contact = sequelize.define("contacts",{
-    username:{
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    phonenumber:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    iduser:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }
+    }, 
+    // emailaddress:{
+    //     type: DataTypes.STRING,
+    //     allowNull: true
+    // }
 })
 
 
 sequelize.sync().then(()=>{
     console.log('Table user cree avec succes')
 
-
     // Insertion d'un element dans une table
-     User.create({
-       username: 'myriam',
-        password: '00000000',
-        phonenumber: 699546198
-     }).then((res)=>{
-         console.log(res)
-     }).catch((error)=>{
-        console.error("Echec de creation de l'utilisateur", error)
-     })
+    // User.create({
+    //     username: 'steven',
+    //     password: 'welcome12',
+    //     phonenumber: 691465849
+    // }).then((res)=>{
+    //     console.log(res)
+    // }).catch((error)=>{
+    //     console.error("Echec de creation de l'utilisateur", error)
+    // })
 
 
     // Selectionner tous les utilisateurs
@@ -122,11 +91,3 @@ sequelize.sync().then(()=>{
 }).catch((error)=>{
     console.error('Impossible de creer cette table')
 })
-
-
-//Exportation des tables, pour pouvoir les utiliser dans les autres fichiers
-module.exports = {
-    User,
-    SMS,
-    Contact
-}

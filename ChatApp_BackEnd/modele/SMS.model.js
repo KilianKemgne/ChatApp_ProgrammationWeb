@@ -20,24 +20,23 @@ sequelize.authenticate()
         console.error('Impossible d\'etablir la connexion')
     })
 
-
-const User = sequelize.define("users",{
-    username:{
+const SMS = sequelize.define("sms",{
+    content:{
         type: DataTypes.STRING,
+        allowNull: true
+    },
+    creationdate:{
+        type: DataTypes.DATEONLY,
         allowNull: false
     },
-    password:{
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    phonenumber:{
+    iduser:{
         type: DataTypes.INTEGER,
         allowNull: false
-    }, 
-    // emailaddress:{
-    //     type: DataTypes.STRING,
-    //     allowNull: true
-    // }
+    },
+    idcontact:{
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
 })
 
 sequelize.sync().then(()=>{
