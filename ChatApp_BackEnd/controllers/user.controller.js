@@ -33,47 +33,16 @@ const User = sequelize.define("users",{
     phonenumber:{
         type: DataTypes.INTEGER,
         allowNull: false
-    }
-})
-
-const SMS = sequelize.define("sms",{
-    content:{
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    creationdate:{
-        type: DataTypes.DATEONLY,
-        allowNull: false
-    },
-    iduser:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    idcontact:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }
-})
-
-const Contact = sequelize.define("contacts",{
-    username:{
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    phonenumber:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    iduser:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }
+    }, 
+    // emailaddress:{
+    //     type: DataTypes.STRING,
+    //     allowNull: true
+    // }
 })
 
 
 sequelize.sync().then(()=>{
     console.log('Table user cree avec succes')
-
 
     // Insertion d'un element dans une table
     // User.create({
@@ -122,5 +91,3 @@ sequelize.sync().then(()=>{
 }).catch((error)=>{
     console.error('Impossible de creer cette table')
 })
-
-
