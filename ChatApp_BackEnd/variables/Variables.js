@@ -7,8 +7,8 @@ const Variable = {
     // pour la bd
     DB_NAME: 'parrotdb',
     USER_NAME: 'root',
-    USER_PASSWORD: 'root',
-    DB_PORT: '3307',
+    USER_PASSWORD: 'songuon2003*',
+    DB_PORT: '3306',
     DB_HOST: '127.0.0.1',
     DB_DIALECT: 'mysql'
 
