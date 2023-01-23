@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 declare interface TableData {
@@ -13,9 +13,29 @@ declare interface TableData {
 })
 export class NewContactComponent implements OnInit {
 
+  @Input() contactName:string;
+
+  @Input() contactNumber="";
+
+  isCorrectName=false
+
+  isCorrectNumber=false
+
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  addNewContact(){
+
+  }
+
+  onResetFields(){
+    console.log("fields resets")
+
+    this.contactName="";
+    this.contactNumber="";
   }
 
   
