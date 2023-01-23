@@ -34,11 +34,12 @@ const User = sequelize.define("users",{
         type: DataTypes.INTEGER,
         allowNull: false
     }, 
-    // emailaddress:{
-    //     type: DataTypes.STRING,
-    //     allowNull: true
-    // }
+    emailaddress:{
+        type: DataTypes.STRING,
+        allowNull: true
+    }
 })
+
 
 sequelize.sync().then(()=>{
     console.log('Toutes les Tables ont ete crees avec succes')
@@ -46,3 +47,4 @@ sequelize.sync().then(()=>{
     console.error('Impossible de creer cette table')
 })
 
+module.exports = {User, sequelize}

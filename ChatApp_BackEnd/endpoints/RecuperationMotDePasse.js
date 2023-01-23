@@ -6,18 +6,17 @@ const variable = require('../variables/Variables')
 
 router.post('/', (req, res, next)=>{
     // on recupere le corps de la requete post
-    let username = req.body.username
     let phonenumber = req.body.phonenumber
     console.log('\n', req.body)
 
     // on recupere les informations correspondant de la base de donnees
     
-
     // on renvoie le resultat de la requete au client
-    if(username == 'steve'/*si l'utilisateur existe*/){
+    if(phonenumber == 677702526/*si l'utilisateur existe*/){
         // on met a jour le mot de passe
         let id = 1
         let password = 'xyzt' 
+        let username = 'kenne'
         // on met la novelle valeur dans la BD
 
         //on renvoi le resultat
@@ -25,7 +24,7 @@ router.post('/', (req, res, next)=>{
     }
     else{
         //on retourne une erreur
-        throw new Error('Identifiants incorrectes')
+        console.log('Identifiants incorrectes')
     }
 
 })

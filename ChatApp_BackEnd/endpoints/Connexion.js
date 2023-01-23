@@ -2,20 +2,13 @@
 const express = require('express')
 const router = express.Router()
 const variable = require('../variables/Variables')
+const md5 = require("md5")
 
-const {Sequelize, DataTypes} = require('sequelize')
+const UserModel = require('../modele/user.model')
+const User = UserModel.User
+const sequelize = UserModel.sequelize
 
-const sequelize = new Sequelize(
-    variable.DB_NAME,
-    variable.USER_NAME,
-    variable.USER_PASSWORD,
-    {
-        host: variable.DB_HOST,
-        port: variable.DB_PORT,
-        dialect: variable.DB_DIALECT
-    }
-)
-// on teste la connexion a la base de donnees
+// // on teste la connexion a la base de donnees
 sequelize.authenticate()
     .then(()=>{
         console.log('Connection a la BD reussie')
@@ -24,26 +17,11 @@ sequelize.authenticate()
         console.error('Impossible d\'etablir la connexion')
     })
 
-
-const User = sequelize.define("users",{
-    username:{
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    password:{
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    phonenumber:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }
-})
-
 let username
 let password
 let id
 let phonenumber
+let emailaddress
 
 async function checkUser(username, password) {
     id = undefined
@@ -61,6 +39,7 @@ async function checkUser(username, password) {
             if(res != null){
                 id = res.dataValues.id
                 phonenumber = res.dataValues.phonenumber
+                emailaddress = res.dataValues.emailaddress
             }
         }).catch((error)=>{
             console.error("Echec de recherche des utilisateurs", error)
@@ -78,8 +57,8 @@ router.post('/', (req, res, next)=>{
     password = req.body.password
     console.log('\n', req.body)
  
-    // on verifie si cet utilisateur existe dans la BD
-    checkUser(username, password)
+    // on verifie si cet utilisateur existe dans la BD (on hache le mot de passe)
+    checkUser(username, md5(password))
 
     // on renvoie le resultat de la requete au client
     setTimeout(()=>{
@@ -87,6 +66,7 @@ router.post('/', (req, res, next)=>{
         if(id == undefined || phonenumber == undefined){
             //on retourne une erreur
             res.send({})// on renvoi une erreur
+            console.log('utilisateur inexistant')
         }
         else{
             if(!req.session.sessionid){
