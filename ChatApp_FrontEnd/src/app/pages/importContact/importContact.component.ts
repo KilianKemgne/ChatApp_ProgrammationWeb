@@ -13,6 +13,9 @@ declare interface TableData {
 })
 export class ImportContactComponent implements OnInit {
 
+  isCorrectNumber=false
+  isCorrectName=false
+
   constructor() { }
 
   ngOnInit() {
