@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthGuard } from "../navbar/auth.guard";
+import { AuthGuard } from '../auth/auth.guard';
 
 declare interface RouteInfo {
     path: string;

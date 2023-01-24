@@ -17,6 +17,8 @@ export class UserService {
     password: '',
   };
 
+  noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
+
   constructor(private http: HttpClient) { } 
 
   postUser(user: User): Observable<any> {
