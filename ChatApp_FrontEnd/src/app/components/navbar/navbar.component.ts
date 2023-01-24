@@ -33,7 +33,8 @@ export class NavbarComponent implements OnInit {
 
     this.userService.logout().subscribe(
       res => {
-        this.userService.deleteUserData()
+        console.log('Deconnexion reussie')
+        this.userService.deleteUserData();
         this.router.navigate(['/login']);
       },
       err => {
@@ -42,6 +43,7 @@ export class NavbarComponent implements OnInit {
       }
     );
   }
+
 
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());

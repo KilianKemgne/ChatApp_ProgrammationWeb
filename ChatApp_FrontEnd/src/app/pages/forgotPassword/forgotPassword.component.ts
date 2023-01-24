@@ -11,7 +11,7 @@ import { UserService } from 'src/app/shared/user.service';
 export class ForgotPasswordComponent implements OnInit{
   constructor(public userService: UserService,private router : Router) { }
   showSucessMessage: string;
-  serverErrorMessages: string;
+  serverErrorMessages: boolean;
   phoneNumberRegex = /^6[0-9]{8}$/
   ngOnInit() {
     
@@ -20,15 +20,23 @@ export class ForgotPasswordComponent implements OnInit{
   onSubmit(form : NgForm){
     this.userService.forgotPassword(form.value).subscribe(
       res => {
-        this.showSucessMessage = 'The code has been send to your phone number please verify it';
-        this.router.navigateByUrl('/verifyCode');
+        if(Object.keys(res).length == 0){
+          console.log('Utilisateur inexistant', res)
+          this.serverErrorMessages = true;
+        }
+        else{
+          console.log(res)
+          this.showSucessMessage = 'The code has been send to your phone number please verify it';
+          this.router.navigateByUrl('/verifyCode');
+        }
+        // here, we have to send the verify code to the user
       },
       err => {
         if (err.status === 422) {
-          this.serverErrorMessages = err.error.join('<br/>');
+          this.serverErrorMessages = true;
         }
         else
-          this.serverErrorMessages = 'Something went wrong.Please contact admin.';
+          this.serverErrorMessages = true;
       }
     )
   }

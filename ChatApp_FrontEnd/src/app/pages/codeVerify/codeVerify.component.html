@@ -37,10 +37,10 @@
                       </div>
                     </div> -->
                     <div class="input-field">
-                      <input type="number" maxlength="1"/>
-                      <input type="number" maxlength="1" disabled />
-                      <input type="number" maxlength="1" disabled />
-                      <input type="number" maxlength="1" disabled />
+                      <input type="number" name="element1" #element1="ngModel" [(ngModel)]="model.element1" maxlength="1"/>
+                      <input type="number" name="element2" #element2="ngModel" [(ngModel)]="model.element2" maxlength="1" disabled />
+                      <input type="number" name="element3" #element3="ngModel" [(ngModel)]="model.element3" maxlength="1" disabled />
+                      <input type="number" name="element4" #element4="ngModel" [(ngModel)]="model.element4" maxlength="1" disabled />
                     </div>
 
                     <input class="btn" type="submit" value="Verify">
