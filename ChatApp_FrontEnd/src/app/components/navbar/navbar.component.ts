@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
       },
       err => {
         // this.serverErrorMessages = err.error.message;
-        console.log("Impossible de déconnecter")
+        console.log("Impossible de se déconnecter")
       }
     );
   }
