@@ -4,7 +4,7 @@ const router = express.Router()
 const {SMS, sequelize} = require('../modele/sms.model')
 
 /*
-//ajouter un sms de test
+//add a sms for test
 SMS.create({
     content: 'test',
     creationdate:  new Date(),
@@ -22,19 +22,19 @@ SMS.findAll().then(sms => {
     console.log(sms)
 });*/
 
-// requete post pour ajoiuter un nouvel sms
-//corps requete : {content: "Message content", iduser: 1, idcontact: [1,2,3]}
+// request for adding a new sms sms
+//body : {content: "Message content", iduser: 1, idcontact: [1,2,3]}
 router.post('/newsms', async (req, res, next) => {
-    // Recuperation des donnees
+    // recovery the paremeter of the request
     const {content, iduser, idcontact} = req.body
-    //Equivalent de : const content = req.body.content
-    //Equivalent de : const iduser = req.body.iduser
-    //Equivalent de : const idcontact = req.body.idcontact
+    //Equivalennt to: const content = req.body.content
+    //Equivalent to : const iduser = req.body.iduser
+    //Equivalent to : const idcontact = req.body.idcontact
 
-    //Creation de la date
+    //Creation of the date
     const creationdate = new Date()
 
-    //Verification si les idcontact contiennent au moins un element
+    //check if the idcontact comprise at least one element
     if (!idcontact || idcontact.length === 0) {
         //400 : Bad Request
         res.status(400).send({message: "Aucun contact selectionne"})
@@ -91,7 +91,7 @@ router.get('/sms/:contactId', async (req, res, next) => {
     // "/?order=desc"  // from the newest to the oldest
     // "/?order=asc"   // from the oldest to the newest
 
-    //Recuperation de l'ordre
+    //Recuperation of the order specify by the user
     const order = req.query.order || "desc"
 
     // pour les sms
@@ -114,7 +114,7 @@ router.get('/sms/:contactId', async (req, res, next) => {
 
 //GET /sms/groupby
 //GET Request to get all SMS grouped by contact
-router.get('/sms/congroupby', async (req, res, next) => {
+router.get('/congroupby', async (req, res, next) => {
     // "/?order=desc"  // from the newest to the oldest
     // "/?order=asc"   // from the oldest to the newest
 
@@ -124,9 +124,9 @@ router.get('/sms/congroupby', async (req, res, next) => {
     // pour les sms
     console.log("Finding all SMS grouped by contact")
     console.log("SMS", SMS)
-    const sms = await SMS.findAll({
-        attributes: ['idcontact', [sequelize.fn('count', sequelize.col('idcontact')), 'count']],
-        group: ['idcontact'],
+    let sms = await SMS.findAll({
+        attributes: ['id', 'content', 'creationdate', 'iduser', 'idcontact'],
+       // group: ['idcontact'],
         order: [
             ['creationdate', order]
         ]
@@ -191,10 +191,6 @@ async function createSMS(content, iduser, idcontact) {
 
 }
 
-createSMS("test", 1, [1, 2, 3])
-createSMS("Bonjour 2", 1, [2])
-createSMS("Bonjour 3", 1, [3])
-createSMS("Bonjour 4", 1, [4])
 
 testFunction()*/
 
