@@ -3,24 +3,6 @@ const router = express.Router()
 
 const {SMS, sequelize} = require('../modele/sms.model')
 
-/*
-//add a sms for test
-SMS.create({
-    content: 'test',
-    creationdate:  new Date(),
-    iduser: 1,
-    idcontact: 1
-}).then((sms)=>{
-    console.log(sms)
-})
-
-
-console.log("Finding all SMS")
-console.log("SMS", SMS)
-SMS.findAll().then(sms => {
-    console.log("SMS  =>", sms)
-    console.log(sms)
-});*/
 
 // request for adding a new sms sms
 //body : {content: "Message content", iduser: 1, idcontact: [1,2,3]}
@@ -63,7 +45,7 @@ router.post('/newsms', async (req, res, next) => {
 })
 
 // GET Request to get all SMS
-router.get('/sms', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     // "/?order=desc"  // from the newest to the oldest
     // "/?order=asc"   // from the oldest to the newest
 
@@ -86,7 +68,7 @@ router.get('/sms', async (req, res, next) => {
 
 //GET /sms/:contactId
 //GET Request to get all SMS for a specific contact
-router.get('/sms/:contactId', async (req, res, next) => {
+router.get('/:contactId', async (req, res, next) => {
 
     // "/?order=desc"  // from the newest to the oldest
     // "/?order=asc"   // from the oldest to the newest
@@ -148,50 +130,22 @@ router.get('/congroupby', async (req, res, next) => {
 })
 
 
-/*async function testFunction() {
+router.delete( '/:id', async (req, res, next)=>{
 
-     let  sms =( await SMS.findAll({
-        attributes: ['id', 'content', 'creationdate', 'iduser', 'idcontact']
+    
+    SMS.destroy({
+        where: {
+            id: req.params.id        }
+    }).then(() => {
+        res.status(200).send("message supprimé avec succes.")
 
-    }))
+        console.log("message supprimé avec succes.")
+    }).catch((error) => {
+        res.status(400).send({message: "Erreur lors de la suppresion du message"})
 
-     sms  = sms.map(
-        (sms) => sms.dataValues
-     ).reduce((acc, sms) => {
-        const {idcontact} = sms
-        if (!acc[idcontact]) {
-            acc[idcontact] = [];
-        }
-        acc[idcontact].push(sms);
-        return acc;
-    })
-
-    console.log("REsult  =>", sms)
-}
-
-
-//A funnction that creates a new SMS, takes the content, the iduser and the idcontact as parameters
-async function createSMS(content, iduser, idcontact) {
-    //Creation of the  date
-    const creationdate = new Date()
-
-    //Create a sms for each contact and add in the BD
-    for (let i = 0; i < idcontact.length; i++) {
-        //Creation of SMS
-        const sms = await SMS.create({
-            content: content,
-            creationdate: creationdate,
-            iduser: iduser,
-            idcontact: idcontact[i]
-        })
-
-
-    }
-    //200 : OK
-
-}
-
-
-testFunction()*/
+        console.error('Erreur lors de la suppresion du message ', error);
+    });
+  
+})
 
 module.exports = router

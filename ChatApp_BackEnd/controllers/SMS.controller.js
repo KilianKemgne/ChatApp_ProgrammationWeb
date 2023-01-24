@@ -3,7 +3,7 @@ const {SMS, sequelize} = require('../modele/sms.model')
 
 
 //ajouter un sms de test
-SMS.create({
+/*SMS.create({
     content: 'nono',
     creationdate:  new Date('2023-02-10'),
     iduser: 2,
@@ -12,7 +12,7 @@ SMS.create({
     console.log(sms)
 }).catch((error)=>{
     console.error("Echec de creation de l'utilisateur", error)
-})
+})*/
 
 // rechercher tous les sms
 exports.findAll = (req, res) => {
