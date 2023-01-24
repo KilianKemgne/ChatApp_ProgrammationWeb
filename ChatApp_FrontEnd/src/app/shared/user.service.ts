@@ -57,4 +57,8 @@ export class UserService {
   verifyCode(code) {
     return this.http.post('/verifyCode', code)
   }
+
+  logout(){
+    return this.http.get(environment.apiBaseUrl+'/deconnexion')
+  }
 }

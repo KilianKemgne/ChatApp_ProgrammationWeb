@@ -53,6 +53,7 @@ export class CodeVerifyComponent implements OnInit {
   }
 
   onSubmit(form : NgForm){
+    console.log(form.value);
     this.userService.verifyCode(form.value).subscribe(
       res => {
         // this.showSucessMessage = true;
