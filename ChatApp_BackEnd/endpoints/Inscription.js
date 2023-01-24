@@ -19,7 +19,7 @@ sequelize.authenticate()
 
 let status = false
 let userExist = false
-let id = 5
+let id
 
 async function createUser(username, password, phonenumber, emailaddress) {
     status = false
@@ -69,7 +69,8 @@ router.post('/', (req, res, next)=>{
     let password = req.body.password
     let phonenumber = parseInt(req.body.phoneNumber)
     let emailaddress = req.body.emailAddress
-    console.log('\n', req.body)
+    console.log('\nreq.body:', req.body)
+    console.log('req.session:', req.session)
 
     // on ajoute ces informations dans la base de donnees (on cree un nouvel utilisateur avec ces informations)
     createUser(username, md5(password), phonenumber, emailaddress)
