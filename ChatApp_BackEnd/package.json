@@ -11,10 +11,10 @@
     "express-session-sequelize": "^2.2.0",
     "md5": "^2.3.0",
     "mysql2": "^3.0.1",
+    "nodemon": "^2.0.20",
     "sequelize": "^6.28.0",
     "webmail-api": "^0.1.6"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
