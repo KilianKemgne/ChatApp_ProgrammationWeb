@@ -55,7 +55,7 @@ app.get('/deconnexion', async (req, res, next)=>{
     await req.session.destroy()
     console.log('Deconnexion reussi')
     console.log('req.session:', req.session)
-    res.send('Deconnexion reussie');
+    res.send({});
 })
 
 

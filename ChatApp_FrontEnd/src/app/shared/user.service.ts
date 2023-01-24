@@ -39,8 +39,11 @@ export class UserService {
     return this.http.post(environment.apiBaseUrl+'/connexion', body,{'headers':headers})
   }
 
-  getUserProfile() {
-    return this.http.get('/userProfile');
+  getUserProfile(id): Observable<any> {
+    const headers = {'content-type': 'application/json'}  
+    const body = id;
+    console.log(body)
+    return this.http.post(environment.apiBaseUrl+'/userprofile', body,{'headers':headers})
   } 
 
   isLoggedIn() {
@@ -54,7 +57,15 @@ export class UserService {
     return this.http.post(environment.apiBaseUrl+'/forgot-password', body,{'headers':headers})
   }
 
-  verifyCode(code) {
-    return this.http.post('/verifyCode', code)
+  verifyCode(code): Observable<any> {
+    const headers = {'content-type': 'application/json'}  
+    const body = {'code': code};
+    console.log(body)
+    return this.http.post(environment.apiBaseUrl+'/verifycode', body,{'headers':headers})
   }
+
+  logout(): Observable<any> {
+    return this.http.get(environment.apiBaseUrl+'/deconnexion')
+  }
+
 }
