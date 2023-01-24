@@ -9,8 +9,8 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ContactsComponent } from '../../pages/contacts/contacts.component';
+import { UserProfileComponent } from 'src/app/pages/user-profile/user-profile.component';
 
-// import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -23,7 +23,8 @@ import { ContactsComponent } from '../../pages/contacts/contacts.component';
   ],
   declarations: [
     DashboardComponent,
-    ContactsComponent
+    ContactsComponent,
+    UserProfileComponent
   ]
 })
 

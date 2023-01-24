@@ -77,4 +77,11 @@ export class UserService {
   deleteUserData(){
     localStorage.removeItem('connectedUser')
   }
+
+  updateUser(user): Observable<any> {
+    const headers = {'content-type': 'application/json'}  
+    const body = user;
+    console.log(body)
+    return this.http.post(environment.apiBaseUrl+'/updateUser', body,{'headers':headers})
+  }
 }

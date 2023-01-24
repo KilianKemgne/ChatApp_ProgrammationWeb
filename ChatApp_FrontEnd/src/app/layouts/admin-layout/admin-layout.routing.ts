@@ -6,6 +6,7 @@ import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { ImportContactComponent } from '../../pages/importContact/importContact.component';
 import { SendMessageComponent } from '../../pages/sendMessage/sendMessage.component';
 import { MessagesComponent } from '../../pages/messages/messages.component';
+import { UserProfileComponent } from 'src/app/pages/user-profile/user-profile.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -14,4 +15,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'importContact',      component: ImportContactComponent },
     { path: 'sendMessage',      component: SendMessageComponent },
     { path: 'messages',      component: MessagesComponent },
+    { path: 'user-profile',   component: UserProfileComponent },
 ];

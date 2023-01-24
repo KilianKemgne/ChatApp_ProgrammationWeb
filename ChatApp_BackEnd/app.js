@@ -10,6 +10,7 @@ const routerMessages = require('./endpoints/SauvegardeRecuperationMessages')
 const routerContacts = require('./endpoints/SauvegardeRecuperationContacts')
 const verifyCode = require('./endpoints/Verifycode')
 const userProfile = require('./endpoints/Userprofile')
+const routerUpdate = require('./endpoints/UpdateUser')
 
 const app = express()
 

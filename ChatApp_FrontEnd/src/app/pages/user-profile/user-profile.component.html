@@ -1,0 +1,173 @@
+<div class="header pb-7 pt-2 pt-lg-3 d-flex align-items-center"
+  style="min-height: 600px; background-image: url(assets/img/theme/porsche.jpg); background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-success opacity-6"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col">
+        <h1 class="display-2 text-white">Hello {{userDetails.username}}</h1>
+        <!-- <p class="text-white mt-0 mb-5">I'm a fourth year student at National Advanced School of Engineering of Yaounde</p> -->
+        <!-- <a href="#!" class="btn btn-info">Change background</a> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--8">
+  <div class="row">
+    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="row justify-content-center pb-5">
+          <div class="col-lg-3 order-lg-2">
+            <div class="card-profile-image">
+              <a href="javascript:void(0)">
+                <img src="../../../assets/img/theme/default-avatar.png" class="rounded-circle" height="180px" width="180px">
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body pt-md-4 mt-3">
+          <div class="row">
+            <div class="col">
+              <div class="card-profile-stats d-flex justify-content-center mt-md-6">
+                <div>
+                  <span class="heading">0</span>
+                  <span class="description">Contacts</span>
+                </div>
+                <!-- <div *ngIf="userImageStatus">
+                  <span class="description text-center">Preview of the photo. Save to set your profile picture</span>
+                </div> -->
+                <div>
+                  <span class="heading">0</span>
+                  <span class="description">Messages</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <h3>
+              {{userDetails.username}}
+              <!-- <span class="font-weight-light">, 17</span> -->
+            </h3>
+            <div class="h5 font-weight-300" >
+              <i class="ni location_pin mr-2"></i>{{userDetails.emailaddress}}
+            </div>
+            <!-- <div class="h5 mt-4">
+              <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
+            </div>
+            <div>
+              <i class="ni education_hat mr-2"></i>University of Computer Science
+            </div> -->
+            <hr class="my-4" />
+            <!-- <p *ngIf="userDetails.aboutMe">{{userDetails.aboutMe}}</p> -->
+            <!-- <a href="javascript:void(0)">Show more</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">My account</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form #updateProfileForm="ngForm" (ngSubmit)="updateProfileForm.valid && onSubmit(updateProfileForm)">
+            <h6 class="heading-small text-muted mb-4">User information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6" hidden>
+                  <div class="form-group">
+                    <input type="text" id="input-_id" #id="ngModel" [(ngModel)]="updateProfile.id"
+                      name="id" class="form-control form-control-alternative" placeholder="id"
+                      [textContent]="userDetails.id">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">User name</label>
+                    <input type="text" id="input-first-name" #userName="ngModel"
+                      [(ngModel)]="updateProfile.userName" name="userName"
+                      class="form-control form-control-alternative" placeholder="User name"
+                      required [ngClass]="{'invalid-textbox' :updateProfileForm.submitted && !userName.valid }">
+                  </div>
+                </div>
+                <div *ngIf="updateProfileForm.submitted && !userName.valid" class="col-lg-6">
+                  <small class="validation-message">This field is required.</small>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Email address</label>
+                    <input type="email" id="input-email" class="form-control form-control-alternative"
+                      #emailAddress="ngModel" [(ngModel)]="updateProfile.emailAddress" name="emailAddress"
+                      placeholder="email@example.com" required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :updateProfileForm.submitted && !emailAddress.valid }">
+                  </div>
+                </div>
+                <div *ngIf="updateProfileForm.submitted && emailAddress.errors" class="col-lg-6">
+                  <small *ngIf="emailAddress.errors.required" class="validation-message">This field is required.</small>
+                  <small *ngIf="emailAddress.errors.pattern" class="validation-message">Invalid email address.</small>
+                </div>
+              </div>
+              <div class="row">
+                
+                <!-- <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-file">Profile</label>
+                    <div class="d-flex align-items-start align-items-sm-center gap-2">
+                      <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                        <span class="d-none d-sm-block">Upload new photo</span>
+                        <input type="file" id="upload" class="account-file-input" hidden accept="image/png, image/jpeg"
+                          (change)="displayPhoto($event)" #image="ngModel"
+                          [(ngModel)]="updateProfile.image" name="image"/>
+                      </label>
+                      <button type="button" class="btn btn-outline-primary account-image-reset mb-4" (click)="reset()">
+                        <span class="d-none d-sm-block">Reset</span>
+                      </button>
+                    </div>
+                    <small class="text-muted mb-0" *ngIf="userImageName" [textContent]="userImageName"></small>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+            <hr class="my-4" />
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4">Contact information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-phoneNumber">Phone Number</label>
+                    <input type="number" id="input-phone-number" class="form-control form-control-alternative"
+                      #phoneNumber="ngModel" [(ngModel)]="updateProfile.phoneNumber" name="phoneNumber"
+                      placeholder="Phone Number" required [ngClass]="{'invalid-textbox' :updateProfileForm.submitted && !phoneNumber.valid }" [pattern]="phoneNumberRegex">
+                  </div>
+                </div>
+                <div *ngIf="updateProfileForm.submitted && !phoneNumber.valid" class="col-lg-4">
+                  <small *ngIf="phoneNumber.errors.required" class="validation-message">This field is required.</small>
+                  <small *ngIf="phoneNumber.errors.pattern" class="validation-message">Invalid phone number.</small>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <!-- Success message -->
+            <div class="success" *ngIf="showSucessMessage">
+              Saved successfully
+            </div>
+
+            <!-- Error message -->
+            <div class="alert" *ngIf="serverErrorMessages">
+              {{serverErrorMessages}}
+            </div>
+            <div class="col text-right">
+              <input type="submit" class="btn btn-sm btn-primary" value="Save">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
