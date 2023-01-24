@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit{
         }
         else{
           console.log('Utilisateur OK', res)
-          localStorage.setItem('connectedUser', res);
+          localStorage.setItem('connectedUser', JSON.stringify(res));
           this.router.navigateByUrl('/dashboard');
         }
       },

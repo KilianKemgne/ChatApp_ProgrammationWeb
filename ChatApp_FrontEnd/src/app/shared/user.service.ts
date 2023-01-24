@@ -44,7 +44,11 @@ export class UserService {
   } 
 
   isLoggedIn() {
-      return false;
+      if(localStorage.getItem('connectedUser')){
+        return true
+      } else{
+        return false;
+      }
   }
 
   forgotPassword(phoneNumber): Observable<any>  {
@@ -60,5 +64,9 @@ export class UserService {
 
   logout(){
     return this.http.get(environment.apiBaseUrl+'/deconnexion')
+  }
+
+  deleteUserData(){
+    localStorage.removeItem('connectedUser')
   }
 }

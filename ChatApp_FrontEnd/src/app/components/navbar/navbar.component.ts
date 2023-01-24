@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
+  userDetails;
 
   constructor(location: Location,  private element: ElementRef, private router: Router, private userService: UserService) {
     this.location = location;
@@ -22,6 +23,9 @@ export class NavbarComponent implements OnInit {
  
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
+    setTimeout(() => {
+      this.userDetails = JSON.parse(localStorage.getItem('connectedUser'))
+    }, 5);
   }
 
   onLogout(){
@@ -29,6 +33,7 @@ export class NavbarComponent implements OnInit {
 
     this.userService.logout().subscribe(
       res => {
+        this.userService.deleteUserData()
         this.router.navigate(['/login']);
       },
       err => {
