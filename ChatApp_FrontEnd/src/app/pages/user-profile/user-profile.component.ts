@@ -36,6 +36,7 @@ export class UserProfileComponent implements OnInit {
     
     this.userService.updateUser(form.value).subscribe(
       res => {
+        console.log(res)
         this.showSucessMessage = true;
         setTimeout(() => this.showSucessMessage = false, 4000);
         //alert("Modifications éffectuées !!")

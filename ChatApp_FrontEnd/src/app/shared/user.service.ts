@@ -81,7 +81,7 @@ export class UserService {
   updateUser(user): Observable<any> {
     const headers = {'content-type': 'application/json'}  
     const body = user;
-    console.log(body)
-    return this.http.post(environment.apiBaseUrl+'/updateUser', body,{'headers':headers})
+    console.log('body:', body)
+    return this.http.post(environment.apiBaseUrl+'/updateuser', body,{'headers':headers})
   }
 }

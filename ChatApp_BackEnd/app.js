@@ -10,6 +10,7 @@ const routerMessages = require('./endpoints/SauvegardeRecuperationMessages')
 const routerContacts = require('./endpoints/SauvegardeRecuperationContacts')
 const verifyCode = require('./endpoints/Verifycode')
 const userProfile = require('./endpoints/Userprofile')
+const updateUser = require('./endpoints/Updateuser')
 
 const app = express()
 
@@ -49,6 +50,7 @@ app.use('/messages', routerMessages) // exposition du endpoint de sauvegarde et 
 app.use('/contacts', routerContacts) // exposition du endpoint de sauvegarde et de recuperation de contacts
 app.use('/verifycode', verifyCode) // endpoint to verify the code
 app.use('/userprofile', userProfile) // endpoint to get the profile of a specific user 
+app.use('/updateuser', updateUser) // endpoint to update user informations
 
 app.get('/deconnexion', async (req, res, next)=>{
     // on detruit la session et on va a l'acceuil (/)
