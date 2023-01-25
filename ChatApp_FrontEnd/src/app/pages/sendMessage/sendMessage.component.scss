@@ -24,7 +24,7 @@ body {
 
 .nav-top {
     position: absolute;
-    background: #fff;
+    background: #486ea7;
     top: 0px;
     width: 100%;
     height: 70px;
@@ -33,6 +33,7 @@ body {
     border-bottom: 1px solid rgba(51,51,51,0.2);
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
+    
 }
 
 .location {
@@ -46,7 +47,7 @@ body {
 }
 .location p {
     font-size: 20px;
-    margin-left: 5px;
+    margin-left: 1px;
 }
 
 .utilisateur {
@@ -66,12 +67,16 @@ body {
 }
 
 .logos-call {
-    width: 100px;
+    width: 90px;
     display: flex;
+    background: #486ea7;
+
 }
 .logos-call img {
-    margin-right: 20px;
-    width: 30px
+    margin-right: 10px;
+    width: 100px
+  
+
 }
 
 
@@ -84,42 +89,19 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     overflow:hidden;
+    background-color: aqua;
 }
-.talk {
-    margin: 20px 0;
-    color: #f1f1f1;
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-    width: 50%;
-  
-}
-.talk img {
-    width: 50px;
-    border-radius: 50%;
-    margin-bottom: auto;
-}
-
-.talk p {
-    padding: 15px;
-    line-height: 25px;
-    border-radius: 20px;
-    /* background: #000; */
-}
-.right {
-    margin-left: auto;
-}
-.right p {
-    margin-right: 10px;
-    background:#0078FF;
-}
-.left p {
-    margin-left: 10px;
-    background: rgb(216,216,216);
-    color: #000;
-}
-
 /* **********FORM********** */
+.chat{
+    resize: none;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    font-size: 16px;
+    width: 200%;
+    height: 40px;
+    padding-top: 10px;
+}
 
 .chat-form {
     flex-shrink: 0;
@@ -127,7 +109,7 @@ body {
     height: 90px;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
-    background: #f1f1f1;
+    background: #486ea7;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -148,6 +130,42 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
+.group-inp1 {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.group-inp1 textarea {
+    resize: none;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom: 15px;
+    border-top: 15px;
+    border-left: 15px;
+    border-right: 15px;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    font-size: 16px;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    padding-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow:hidden;
+}
+
 .group-inp img {
     width: 30px;
 }
