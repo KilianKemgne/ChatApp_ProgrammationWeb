@@ -70,6 +70,8 @@ body {
     width: 90px;
     display: flex;
     background: #486ea7;
+    border-radius: 50px;
+    
 
 }
 .logos-call img {
@@ -208,6 +210,25 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.submit-msg-btn1 {
+    background: #fff;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    width: 30px;
+    border: 20px;
+    display: flex;
+    
+}
+
+
+
+.submit-msg-btn1 img {
+    width: 30px;
+    height: 30px;
+    
+}
+
 
 .submit-msg-btn img {
     width: 30px;
