@@ -13,7 +13,7 @@ declare interface TableData {
 })
 export class SendMessageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit() {
   }

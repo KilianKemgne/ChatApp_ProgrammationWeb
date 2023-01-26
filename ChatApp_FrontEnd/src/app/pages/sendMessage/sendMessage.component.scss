@@ -74,7 +74,7 @@ body {
     
 
 }
-.logos-call img {
+.logos-call.submit-msg-btn1 img {
     margin-right: 10px;
     width: 100px
   
@@ -218,6 +218,7 @@ body {
     width: 30px;
     border: 20px;
     display: flex;
+    justify-content: center;
     
 }
 
@@ -225,7 +226,12 @@ body {
 
 .submit-msg-btn1 img {
     width: 30px;
-    height: 30px;
+    height: 40px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    justify-content: center;
     
 }
 
