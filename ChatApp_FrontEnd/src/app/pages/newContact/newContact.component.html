@@ -1,2 +1,47 @@
 <div class="header bg-gradient-success pb-8 pt-5 pt-md-8">
+
+</div>
+<div class="card bg-secondary shadow  mx-3">
+    <form [formGroup]="newContact" (ngSubmit)="newContact.valid && onSubmit()">
+
+        <div class="add-contact-header card-header col-sm-12">
+            <div class="header-title">
+                <i class="fa fa-plus text-success"></i>
+                <span class="mx-1"><b> NEW CONTACT</b></span>
+            </div>
+            <div><a [routerLink] = "['/importContact']" routerLinkActive><button class="btn btn-success mx-1" id="import-button"><i class="fa fa-download" aria-hidden="true"></i><span class="mx-1">Import</span></button></a></div>
+        </div>
+
+        <div class="col mb-3">
+            <label for="nameWithTitle" class="form-label">Contact name</label>
+
+
+            <div class="row-style">
+                <i class="fa-address-book fa-regular ni text-success fa"></i>
+                <input type="text" class="form-control form-control-alternative mx-2" formControlName="username" name="username"
+                required placeholder="Type the contact name here" />
+            </div>
+        </div>
+
+        <div class="col mb-3">
+            <label for="nameWithTitle" class="form-label">Contact number</label>
+
+            <div class="row-style">
+                <i class="fa fa-phone fa text-success "></i>
+                <input type="number" id="input-phone-number" class="form-control form-control-alternative mx-2"
+                      formControlName="phonenumber" name="phonenumber"
+                      placeholder="Type the contact number here" required [pattern]="phoneNumberRegex">
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <div class="footer-buttons">
+                <button class="reset-button mx-1" (click)="onResetFields()"><i class="fa fa-repeat"></i><span class="mx-1">
+                        Reset</span></button>
+                
+                <i class="fa fa-floppy"></i>
+                <input type="submit" class="btn bg-success mx-1" [disabled]="isCorrectName && isCorrectNumber" value="Save">
+            </div>
+        </div>
+    </form>
 </div>

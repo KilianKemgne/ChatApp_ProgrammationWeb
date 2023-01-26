@@ -1,0 +1,67 @@
+.add-contact-header{
+
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.card-header{
+    padding-left: 2.4375rem !important;
+    padding-right: 2.4375rem !important;
+}
+button{
+    background-color: #2DCEC5;
+    border-width: 0;
+    border-style: none;
+    border-radius: 10%;
+    padding: 5px;
+}
+
+.header-title{
+    display: flex;
+    align-items: center;
+}
+
+
+.card-footer{
+    display: flex !important;
+    align-items: flex-end;
+    justify-content: flex-end !important;
+    padding-left: 2.4375rem !important;
+    padding-right: 2.4375rem !important;
+}
+
+
+
+.footer-buttons{
+    width: fit-content !important;
+    min-width: fit-content !important;
+}
+
+.row-style{
+    display: flex;
+    align-items: center;
+}
+
+#import-button{
+    color: #fff;
+}
+
+.reset-button{
+    color: #fff !important;
+    background-color: rgb(240, 38, 38);
+}
+
+.save-button{
+    color: #fff !important;
+}
+
+
+@media screen and (min-width: 840px){
+
+    .card{
+        width: 65% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}

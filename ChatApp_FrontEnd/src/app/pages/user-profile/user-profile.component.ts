@@ -21,6 +21,9 @@ export class UserProfileComponent implements OnInit {
   constructor(public userService: UserService,private router : Router) { }
 
   ngOnInit() {
+    if(!this.userService.isLoggedIn()){
+      this.router.navigateByUrl('/login');
+    }
     this.userDetails = JSON.parse(localStorage.getItem('connectedUser'));
     this.updateProfile = {
       id: this.userDetails.id,
@@ -38,6 +41,7 @@ export class UserProfileComponent implements OnInit {
       res => {
         console.log(res)
         this.showSucessMessage = true;
+        localStorage['connectedUser'] = JSON.stringify(res)
         setTimeout(() => this.showSucessMessage = false, 4000);
         //alert("Modifications éffectuées !!")
         this.router.navigate(['/update-profile']);

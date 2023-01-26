@@ -41,3 +41,4 @@ sequelize.sync().then(()=>{
     console.error('Impossible de creer cette table')
 })
 
+module.exports = {Contact, sequelize};

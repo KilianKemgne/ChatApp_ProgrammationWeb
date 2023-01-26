@@ -1,11 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/shared/user.service';
-
-declare interface TableData {
-  headerRow: string[];
-  dataRows;
-}
+import { ContactService } from 'src/app/shared/contact.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-newContact',
@@ -14,14 +10,52 @@ declare interface TableData {
 })
 export class NewContactComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) { }
+  @Input() contactName:string;
 
-  ngOnInit() {
-    if(!this.userService.isLoggedIn())
-      this.router.navigateByUrl('/login');
+  @Input() contactNumber="";
+
+  isCorrectName=false
+
+  isCorrectNumber=false
+
+  phoneNumberRegex = /^6[0-9]{8}$/
+  newContact: FormGroup;
+
+  constructor(private contactService : ContactService, private formBuilder : FormBuilder) { 
+      this.newContact = formBuilder.group({
+        username: '',
+        phonenumber: '',
+        iduser: JSON.parse(localStorage.getItem('connectedUser')).id
+      })
   }
 
-  
+  userData
+
+  ngOnInit() {
+    // this.userData = JSON.parse(localStorage.getItem('connectedUser'))
+    // console.log(this.userData.id);
+  }
+
+  onSubmit(){
+    console.log(this.newContact.value)
+    this.contactService.createContact(this.newContact.value).subscribe(
+      res => {
+        alert('Contact saved successfully!')
+      },
+      err => {
+        alert('An error occured !')
+      }
+    )
+  }
+
+  addNewContact(){
+    
+  }
+
+  onResetFields(){
+    console.log("fields resets")
+    this.newContact.reset()
+  }
 
   onLogout(){
     
