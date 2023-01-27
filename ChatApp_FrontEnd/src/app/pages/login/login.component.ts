@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {Router} from "@angular/router"
 import { UserService } from 'src/app/shared/user.service';
@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit{
         }
         else{
           console.log('Utilisateur OK', res)
+          localStorage.setItem('connectedUser', JSON.stringify(res));
           this.router.navigateByUrl('/dashboard');
         }
       },

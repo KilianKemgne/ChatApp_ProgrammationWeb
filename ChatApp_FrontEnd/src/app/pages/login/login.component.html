@@ -45,7 +45,6 @@
             </div>
             <div *ngIf="signInForm.submitted && userName.errors">
               <label *ngIf="emailAddress.errors.required" class="validation-message">This field is required.</label>
-              <label *ngIf="emailAddress.errors.pattern" class="validation-message">Invalid username.</label>
             </div>
             <div class="form-group">
               <div class="input-group input-group-alternative">

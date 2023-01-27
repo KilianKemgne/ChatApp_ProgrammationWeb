@@ -12,6 +12,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
+import { UserService } from './shared/user.service';
+import { AuthGuard } from './components/auth/auth.guard';
+import { AuthInterceptor } from './components/auth/auth.interceptor';
 
 
 
@@ -30,7 +33,11 @@ import { ComponentsModule } from './components/components.module';
     AdminLayoutComponent,
     AuthLayoutComponent,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  },AuthGuard,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

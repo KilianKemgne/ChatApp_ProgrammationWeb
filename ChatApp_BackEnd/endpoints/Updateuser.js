@@ -2,44 +2,52 @@
 const express = require('express')
 const router = express.Router()
 const variable = require('../variables/Variables')
-const md5 = require("md5")
 
 const UserModel = require('../modele/user.model')
 const User = UserModel.User
 const sequelize = UserModel.sequelize
 
-// // on teste la connexion a la base de donnees
-sequelize.authenticate()
-    .then(()=>{
-        console.log('Connection a la BD reussie')
-    })
-    .catch((error)=>{
-        console.error('Impossible d\'etablir la connexion')
-    })
 
 let username
-let password
 let id
 let phonenumber
 let emailaddress
 
-async function checkUser(username, password) {
-    id = undefined
+let newusername
+let newemailaddress
+let newphonenumber
+
+async function checkUser(id) {
+    username = undefined
     phonenumber = undefined
     const resp = await sequelize.sync().then(()=>{
-        console.log('Table user cree avec succes')
-        // Selectionner un utilisateur en particulier avec son username et password
         User.findOne({
             where: {
-                username: username,
-                password: password
+                id: id
             }
         }).then((res)=>{
             console.log(res)
             if(res != null){
-                id = res.dataValues.id
+                username = res.dataValues.username
                 phonenumber = res.dataValues.phonenumber
                 emailaddress = res.dataValues.emailaddress
+                // on met a jour ses donnees dans la table user
+                if(newusername != username || newemailaddress != emailaddress || newphonenumber != phonenumber){
+                    username = newusername
+                    emailaddress = newemailaddress
+                    phonenumber = newphonenumber
+                    // mise a jour de la BD
+                    User.update(
+                        {
+                            username: username,
+                            phonenumber: phonenumber,
+                            emailaddress: emailaddress
+                        },
+                        {
+                            where: { id: id }
+                        }
+                    ).then((res)=>{console.log('UPDATE:', res)})
+                }
             }
         }).catch((error)=>{
             console.error("Echec de recherche des utilisateurs", error)
@@ -53,38 +61,35 @@ async function checkUser(username, password) {
 
 router.post('/', (req, res, next)=>{
     // on recupere le corps de la requete post
-    username = req.body.username
-    password = req.body.password
+    id = req.body.id
+    newusername = req.body.userName
+    newemailaddress = req.body.emailAddress
+    newphonenumber = req.body.phoneNumber
+
     console.log('\n', req.body)
+    console.log('req.session:', req.session)
  
     // on verifie si cet utilisateur existe dans la BD (on hache le mot de passe)
-    checkUser(username, md5(password))
+    checkUser(id)
 
     // on renvoie le resultat de la requete au client
     setTimeout(()=>{
         // on va juste patienter 50 millisecondes pour que le resultat de la requete soit disponible
-        if(id == undefined || phonenumber == undefined){
+        console.log('req.session:', req.session)
+        if(username == undefined || phonenumber == undefined){
             //on retourne une erreur
             res.send({})// on renvoi une erreur
             console.log('utilisateur inexistant')
         }
         else{
-            if(!req.session.user){
-                req.session.user = {
-                    id: id,
-                    emailaddress: emailaddress,
-                    username: username
-                }
-                // req.session.sessionid = id.toString(10)+phonenumber.toString(10);
-                // req.session.userid = id
-                // req.session.username = username
-                console.log(`Vous etes connectes, bienvenue ${req.session.user.username} !`)
-                console.log(req.session)
+            // on met a jour la session
+            req.session.user = {
+                id: id,
+                emailaddress: emailaddress,
+                username: username
             }
-            else{
-                console.log('vous etiez deja connectes')
-                console.log(req.session) 
-            }
+            console.log(`La session a ete mise a jour, bienvenue ${req.session.user.username} !`)
+            console.log(req.session)
             //on renvoi le resultat (on ne lui envoi pas le password)
             res.send({'id': id, 'username': username, 'phonenumber': phonenumber,'emailaddress': emailaddress})
         }

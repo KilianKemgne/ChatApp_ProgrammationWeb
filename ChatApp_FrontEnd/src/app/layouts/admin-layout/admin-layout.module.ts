@@ -9,21 +9,28 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ContactsComponent } from '../../pages/contacts/contacts.component';
+import { UserProfileComponent } from 'src/app/pages/user-profile/user-profile.component';
+import { NewContactComponent } from 'src/app/pages/newContact/newContact.component';
+import { ImportContactComponent } from 'src/app/pages/importContact/importContact.component';
 
-// import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
-    FormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     DashboardComponent,
-    ContactsComponent
+    ContactsComponent,
+    UserProfileComponent,
+    NewContactComponent,
+    ImportContactComponent
   ]
 })
 

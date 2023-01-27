@@ -2,21 +2,13 @@
 const express = require('express')
 const router = express.Router()
 const variable = require('../variables/Variables')
+const md5 = require("md5")
 
+const UserModel = require('../modele/user.model')
+const User = UserModel.User
+const sequelize = UserModel.sequelize
 
-const {Sequelize, DataTypes} = require('sequelize')
-
-const sequelize = new Sequelize(
-    variable.DB_NAME,
-    variable.USER_NAME,
-    variable.USER_PASSWORD,
-    {
-        host: variable.DB_HOST,
-        port: variable.DB_PORT,
-        dialect: variable.DB_DIALECT
-    }
-)
-// on teste la connexion a la base de donnees
+// // on teste la connexion a la base de donnees
 sequelize.authenticate()
     .then(()=>{
         console.log('Connection a la BD reussie')
@@ -25,29 +17,9 @@ sequelize.authenticate()
         console.error('Impossible d\'etablir la connexion')
     })
 
-
-const User = sequelize.define("users",{
-    username:{
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    password:{
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    phonenumber:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }, 
-    // emailaddress:{
-    //     type: DataTypes.STRING,
-    //     allowNull: true
-    // }
-})
-
 let status = false
 let userExist = false
-let id = 5
+let id
 
 async function createUser(username, password, phonenumber, emailaddress) {
     status = false
@@ -75,7 +47,7 @@ async function createUser(username, password, phonenumber, emailaddress) {
                 username: username,
                 password: password,
                 phonenumber: phonenumber,
-                // emailaddress: emailaddress
+                emailaddress: emailaddress
             }).then((res)=>{
                 console.log(res)
                 // id = res.id
@@ -97,10 +69,11 @@ router.post('/', (req, res, next)=>{
     let password = req.body.password
     let phonenumber = parseInt(req.body.phoneNumber)
     let emailaddress = req.body.emailAddress
-    console.log('\n', req.body)
+    console.log('\nreq.body:', req.body)
+    console.log('req.session:', req.session)
 
     // on ajoute ces informations dans la base de donnees (on cree un nouvel utilisateur avec ces informations)
-    createUser(username, password, phonenumber, emailaddress)
+    createUser(username, md5(password), phonenumber, emailaddress)
 
     // on renvoie le resultat de la requete au client
     setTimeout(()=>{

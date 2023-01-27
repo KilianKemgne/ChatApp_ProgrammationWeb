@@ -8,13 +8,16 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "express-session-sequelize": "^2.2.0",
+    "md5": "^2.3.0",
     "mysql2": "^3.0.1",
-    "sequelize": "^6.28.0"
+    "nodemon": "^2.0.20",
+    "sequelize": "^6.28.0",
+    "webmail-api": "^0.1.6"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app"
+    "start" : "nodemon app"
   },
   "keywords": [],
   "author": "",

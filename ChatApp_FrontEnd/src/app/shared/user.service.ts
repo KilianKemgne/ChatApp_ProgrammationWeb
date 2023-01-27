@@ -17,6 +17,8 @@ export class UserService {
     password: '',
   };
 
+  noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
+
   constructor(private http: HttpClient) { } 
 
   postUser(user: User): Observable<any> {
@@ -39,12 +41,19 @@ export class UserService {
     return this.http.post(environment.apiBaseUrl+'/connexion', body,{'headers':headers})
   }
 
-  getUserProfile() {
-    return this.http.get('/userProfile');
+  getUserProfile(id): Observable<any> {
+    const headers = {'content-type': 'application/json'}  
+    const body = id;
+    console.log(body)
+    return this.http.post(environment.apiBaseUrl+'/userprofile', body,{'headers':headers})
   } 
 
   isLoggedIn() {
-      return false;
+      if(localStorage.getItem('connectedUser')){
+        return true
+      } else{
+        return false;
+      }
   }
 
   forgotPassword(phoneNumber): Observable<any>  {
@@ -54,7 +63,25 @@ export class UserService {
     return this.http.post(environment.apiBaseUrl+'/forgot-password', body,{'headers':headers})
   }
 
-  verifyCode(code) {
-    return this.http.post('/verifyCode', code)
+  verifyCode(code): Observable<any> {
+    const headers = {'content-type': 'application/json'}  
+    const body = {'code': code};
+    console.log(body)
+    return this.http.post(environment.apiBaseUrl+'/verifycode', body,{'headers':headers})
+  }
+
+  logout(): Observable<any> {
+    return this.http.get(environment.apiBaseUrl+'/deconnexion')
+  }
+
+  deleteUserData(){
+    localStorage.removeItem('connectedUser')
+  }
+
+  updateUser(user): Observable<any> {
+    const headers = {'content-type': 'application/json'}  
+    const body = user;
+    console.log('body:', body)
+    return this.http.post(environment.apiBaseUrl+'/updateuser', body,{'headers':headers})
   }
 }

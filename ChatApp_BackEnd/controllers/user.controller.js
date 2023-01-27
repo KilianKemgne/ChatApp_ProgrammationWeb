@@ -1,16 +1,12 @@
 const {Sequelize, DataTypes} = require('sequelize')
 const variable = require('../variables/Variables')
+const md5 = require("md5")
+const UserModel = require('../modele/user.model')
 
-const sequelize = new Sequelize(
-    variable.DB_NAME,
-    variable.USER_NAME,
-    variable.USER_PASSWORD,
-    {
-        host: variable.DB_HOST,
-        port: variable.DB_PORT,
-        dialect: variable.DB_DIALECT
-    }
-)
+const User = UserModel.User
+
+const sequelize = UserModel.sequelize
+
 // on teste la connexion a la base de donnees
 sequelize.authenticate()
     .then(()=>{
@@ -21,34 +17,25 @@ sequelize.authenticate()
     })
 
 
-const User = sequelize.define("users",{
-    username:{
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    password:{
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    phonenumber:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }, 
-    // emailaddress:{
-    //     type: DataTypes.STRING,
-    //     allowNull: true
-    // }
-})
-
-
 sequelize.sync().then(()=>{
-    console.log('Table user cree avec succes')
+    // Suppression d'un element dans une table
+    // User.destroy({
+    //     where: {
+    //         username: 'steven',
+    //         password: md5('welcome12')
+    //     }
+    // }).then((res)=>{
+    //     console.log('suppression reussie')
+    // }).catch((error)=>{
+    //     console.error("Echec de creation de l'utilisateur", error)
+    // })
 
     // Insertion d'un element dans une table
     // User.create({
-    //     username: 'steven',
-    //     password: 'welcome12',
-    //     phonenumber: 691465849
+    //     username: 'lening',
+    //     password: md5('helloworld'),
+    //     phonenumber: 691465849,
+    //     emailaddress: 'micheltalaupa@gmail.com'
     // }).then((res)=>{
     //     console.log(res)
     // }).catch((error)=>{
@@ -91,3 +78,53 @@ sequelize.sync().then(()=>{
 }).catch((error)=>{
     console.error('Impossible de creer cette table')
 })
+
+let CreateUser = (username, password, phonenumber, emailaddress) =>{
+    sequelize.sync().then(()=>{
+        User.create({
+            username: username,
+            password: password,
+            phonenumber: phonenumber,
+            emailaddress: emailaddress
+        }).then((res)=>{
+            console.log(res)
+        }).catch((error)=>{
+            console.error("Echec de creation de l'utilisateur", error)
+        })
+     
+    }).catch((error)=>{
+        console.error('Impossible de creer cette table')
+    })
+}
+
+let FindAllUsers = ()=>{
+    sequelize.sync().then(()=>{
+        User.findAll().then((res)=>{
+            console.log(res)
+        }).catch((error)=>{
+            console.error("Echec de recherche des utilisateurs", error)
+        })
+    
+    }).catch((error)=>{
+        console.error('Impossible de creer cette table')
+    })
+}
+
+let FindUserByID = () =>{
+    
+}
+
+let FindUserByUserName = () =>{
+    
+}
+
+let UpdateUser = () =>{
+
+}
+
+let DeleteUser = () =>{
+
+}
+
+
+module.exports = {CreateUser, FindAllUsers, FindUserByID, FindUserByUserName, UpdateUser, DeleteUser}

@@ -13,6 +13,13 @@ export class CodeVerifyComponent implements OnInit {
 
   constructor(public userService: UserService,private router : Router) { }
   
+  model = {
+    element1 :'',
+    element2 :'',
+    element3 :'',
+    element4 :'',
+  };
+
   ngOnInit() {
     const inputs = document.querySelectorAll("input");
     inputs.forEach((input, index1) => {
@@ -53,12 +60,15 @@ export class CodeVerifyComponent implements OnInit {
   }
 
   onSubmit(form : NgForm){
-    this.userService.verifyCode(form.value).subscribe(
+    let code = this.model.element1.toString()+this.model.element2.toString()+this.model.element3.toString()+this.model.element4.toString()
+    console.log({'code':code})
+    this.userService.verifyCode(code).subscribe(
       res => {
         // this.showSucessMessage = true;
         // setTimeout(() => this.showSucessMessage = false, 4000);
         // this.resetForm(form);
         // this.router.navigateByUrl('/login');
+        // show the code 
         console.log(res);
         
       },

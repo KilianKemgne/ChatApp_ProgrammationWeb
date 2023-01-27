@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,20 +14,36 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
+  userDetails;
 
-  constructor(location: Location,  private element: ElementRef, private router: Router) {
+  constructor(location: Location,  private element: ElementRef, private router: Router, private userService: UserService) {
     this.location = location;
   }
 
  
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
+    setTimeout(() => {
+      this.userDetails = JSON.parse(localStorage.getItem('connectedUser'))
+    }, 5);
   }
 
   onLogout(){
     // on envoi un signal au serveur avant de se deconnecter
-    this.router.navigate(['/login']);
+
+    this.userService.logout().subscribe(
+      res => {
+        console.log('Deconnexion reussie')
+        this.userService.deleteUserData();
+        this.router.navigate(['/login']);
+      },
+      err => {
+        // this.serverErrorMessages = err.error.message;
+        console.log("Impossible de se déconnecter")
+      }
+    );
   }
+
 
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());

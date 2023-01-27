@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/shared/user.service';
 
 
 @Component({
@@ -9,9 +10,11 @@ import { Router } from '@angular/router';
 })
 export class ContactsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+    if(!this.userService.isLoggedIn())
+      this.router.navigateByUrl('/login');
   }
   
 }
