@@ -67,7 +67,7 @@ export class CodeVerifyComponent implements OnInit {
         // this.showSucessMessage = true;
         // setTimeout(() => this.showSucessMessage = false, 4000);
         // this.resetForm(form);
-        // this.router.navigateByUrl('/login');
+        this.router.navigateByUrl('/newPassword');
         // show the code 
         console.log(res);
         

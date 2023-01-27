@@ -1,4 +1,5 @@
 const {Contact, sequelize} = require('../modele/contact.model')
+const {sendSms} = require('../endpoints/EnvoiSMS')
 
 
 // Fonction pour récupérer tous les contacts
@@ -19,6 +20,7 @@ exports.create = (req, res) => {
         iduser: req.body.iduser,
     }).then((contact) => {
         res.status(200).json(contact);
+
     }).catch((error) => {
         res.status(400).json(error);
     });

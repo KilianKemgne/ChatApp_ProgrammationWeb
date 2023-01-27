@@ -1,2 +1,47 @@
 <div class="header bg-gradient-success pb-8 pt-5 pt-md-8">
+    <div class="chat-global">
+        <form    [formGroup]="sendMessage" (ngSubmit)="sendMessage.valid && onSubmit()">
+    
+            <div class="nav-top">
+            
+    
+                <div class="group-inp1 mx-1"> 
+                
+                    <input class="form-control"  formControlName="idcontact"  name="idcontact" placeholder="               Phone Number          " minlength="1" maxlength="1500">
+                        
+                </div>
+    
+                <div class="logos-call">
+                    <a routerLinkActive="active" [routerLink]="['/contacts']">
+                        <button class="submit-msg-btn1">
+                            <img src="../../../assets/img/téléchargement (1).png">
+                        </button>
+                    </a>
+                
+                </div>
+            </div>
+    
+            <div class="conversation">
+          
+            </div>
+    
+    
+    
+            <div class="container-inputs-stuffs" >
+    
+    
+    
+                <div class="group-inp mx-1">
+                    <input class="form-control"   formControlName="content" name="content" placeholder="Enter your message here" minlength="1" maxlength="1500">
+                </div>
+    
+                <button class="submit-msg-btn" type="submit">
+                    <img src="../../../assets/img/send.svg">
+                </button>
+    
+            </div>
+    
+        </form>
+    </div>
 </div>
+

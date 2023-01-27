@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/shared/user.service';
+import { NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
-declare interface TableData {
+import { messageService } from 'src/app/shared/message/message.service';
+
+
+/*declare interface TableData {
   headerRow: string[];
   dataRows;
 }
+*/
+
 
 @Component({
   selector: 'app-sendMessage',
@@ -14,14 +20,35 @@ declare interface TableData {
 })
 export class SendMessageComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) { }
+  sendMessage: FormGroup;
+
+  constructor(private messageService: messageService, private router: Router, private formBuilder : FormBuilder) { 
+    this.sendMessage = formBuilder.group({
+      content: '',
+      creationDate: '',
+      iduser: JSON.parse(localStorage.getItem('connectedUser')).id,
+      idcontact: ''
+    })
+}
+  
 
   ngOnInit() {
-    if(!this.userService.isLoggedIn())
-      this.router.navigateByUrl('/login');
   }
 
-  
+  onSubmit() {
+    
+     const contact = (this.sendMessage.value.idcontact).split(",");
+     this.sendMessage.value.idcontact = contact;
+     console.log(this.sendMessage.value);
+    this.messageService.createSMS(this.sendMessage.value).subscribe(
+      res => {
+        alert('SMS saved successfully!')
+      },
+      err => {
+        alert('An error occured !')
+      }
+    );
+  }
 
   onLogout(){
     

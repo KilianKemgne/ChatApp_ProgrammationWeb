@@ -9,18 +9,21 @@ import { LoginComponent } from '../../pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
 import { ForgotPasswordComponent } from '../../pages/forgotPassword/forgotPassword.component';
 import { CodeVerifyComponent } from 'src/app/pages/codeVerify/codeVerify.component';
+import { NewPasswordComponent } from 'src/app/pages/newPassword/newPassword.component';
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AuthLayoutRoutes),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
     // NgbModule
   ],
   declarations: [
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    CodeVerifyComponent
+    CodeVerifyComponent,
+    NewPasswordComponent
   ]
 })
 export class AuthLayoutModule { }

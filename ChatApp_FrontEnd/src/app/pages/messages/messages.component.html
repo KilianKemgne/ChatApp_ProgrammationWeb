@@ -1,2 +1,27 @@
 <div class="header bg-gradient-success pb-8 pt-5 pt-md-8">
+  <div class="card bg-secondary shadow  mx-3">
+    <div class="table-responsive">
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">contact</th>
+            <th scope="col">message</th>
+            <th scope="col">date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let message of messages">
+              <td>
+                  {{message.idcontact}}
+              </td>
+              <td  > {{message.content}} </td>
+            <td>
+              {{message.createdAt}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
+    

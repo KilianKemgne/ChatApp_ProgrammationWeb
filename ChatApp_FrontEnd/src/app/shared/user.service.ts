@@ -84,4 +84,11 @@ export class UserService {
     console.log('body:', body)
     return this.http.post(environment.apiBaseUrl+'/updateuser', body,{'headers':headers})
   }
+
+  newUserPassword(user): Observable<any> {
+    const headers = {'content-type': 'application/json'}  
+    const body = user;
+    console.log('body:', body)
+    return this.http.post(environment.apiBaseUrl+'/newuserpassword', body,{'headers':headers})
+  }
 }

@@ -12,6 +12,8 @@ import { ContactsComponent } from '../../pages/contacts/contacts.component';
 import { UserProfileComponent } from 'src/app/pages/user-profile/user-profile.component';
 import { NewContactComponent } from 'src/app/pages/newContact/newContact.component';
 import { ImportContactComponent } from 'src/app/pages/importContact/importContact.component';
+import { SendMessageComponent } from 'src/app/pages/sendMessage/sendMessage.component';
+import { MessagesComponent } from 'src/app/pages/messages/messages.component';
 
 
 
@@ -30,7 +32,10 @@ import { ImportContactComponent } from 'src/app/pages/importContact/importContac
     ContactsComponent,
     UserProfileComponent,
     NewContactComponent,
-    ImportContactComponent
+    ImportContactComponent,
+    NewContactComponent,
+    SendMessageComponent,
+    MessagesComponent
   ]
 })
 

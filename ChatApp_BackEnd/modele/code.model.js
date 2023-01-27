@@ -20,32 +20,18 @@ sequelize.authenticate()
         console.error('Impossible d\'etablir la connexion')
     })
 
-const SMS = sequelize.define("sms",{
-    content:{
+const Code = sequelize.define("code",{
+    code:{
         type: DataTypes.STRING,
-        allowNull: true
-    },
-    creationdate:{
-        type: DataTypes.DATEONLY,
         allowNull: false
     },
-    iduser:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    idcontact:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }
 })
 
-sequelize.sync().then(()=>{
-    console.log('Toutes les Tables ont ete crees avec succes')
+sequelize.sync().then(async ()=>{
+    console.log('Table code cree avec succes')
 }).catch((error)=>{
     console.error('Impossible de creer cette table')
 })
 
-module.exports = {
-    SMS,
-    sequelize
-}
+module.exports = {Code, sequelize}
+

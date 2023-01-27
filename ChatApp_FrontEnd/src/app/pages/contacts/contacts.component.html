@@ -1,2 +1,22 @@
 <div class="header bg-gradient-success pb-8 pt-5 pt-md-8">
+    <div class="card bg-secondary shadow  mx-3">
+        <table class="table">
+            <caption class="mx-3">List of Contacts</caption>
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Username</th>
+                <th scope="col">phoneNumber</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let contact of contactsList">
+                <th scope="row">{{contact.id}}</th>
+                <td>{{contact.username}}</td>
+                <td>{{contact.phonenumber}}</td>
+              </tr>  
+            </tbody>
+          </table>
+    </div>    
 </div>
+
