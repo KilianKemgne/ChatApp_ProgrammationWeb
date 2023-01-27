@@ -14,12 +14,23 @@ export class NewPasswordComponent implements OnInit{
 
   updateUser : FormGroup;
   constructor(public userService: UserService,private router : Router, private formBuilder : FormBuilder) {
+
+      this.userService.getUserProfile(localStorage.getItem('phonenumber')).subscribe(
+      res => { 
+        localStorage.setItem('connectedUser', JSON.stringify(res));
+        localStorage.removeItem('phonenumber')
+      },
+      err => {
+        console.log('Cannot found !');
+      }
+    )
+
     this.userDetails = JSON.parse(localStorage.getItem('connectedUser'));
     this.updateUser = formBuilder.group({
-      id: this.userDetails.id,
-      userName: this.userDetails.username,
-      emailAddress: this.userDetails.emailaddress,
-      phoneNumber: this.userDetails.phonenumber,
+      id: JSON.parse(localStorage.getItem('connectedUser')).id,
+      userName: JSON.parse(localStorage.getItem('connectedUser')).username,
+      emailAddress: JSON.parse(localStorage.getItem('connectedUser')).emailaddress,
+      phoneNumber: JSON.parse(localStorage.getItem('connectedUser')).phonenumber,
       newPassword:''
     })
    }
@@ -27,17 +38,15 @@ export class NewPasswordComponent implements OnInit{
   userDetails;
 
   ngOnInit() {
-    this.userDetails = JSON.parse(localStorage.getItem('connectedUser'));
-    
+   
   }
 
   onSubmit(){
-    const contact = (this.updateUser.value.idcontact).split(",");
-     this.updateUser.value.idcontact = contact;
-     console.log(this.updateUser.value);
+    
+    //console.log(this.updateUser.value);
     this.userService.newUserPassword(this.updateUser.value).subscribe(
       res => {
-        alert('Votre nouveau mot de passe vous a ete envoye par mail')
+        localStorage.removeItem('connectedUser')
         this.router.navigateByUrl('/login')
       },
       err => {

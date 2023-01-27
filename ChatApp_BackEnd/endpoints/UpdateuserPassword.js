@@ -9,7 +9,6 @@ const md5 = require('md5')
 const User = UserModel.User
 const sequelize = UserModel.sequelize
 
-
 let username
 let id
 let phonenumber
@@ -91,9 +90,6 @@ router.post('/', (req, res, next)=>{
             }
             console.log(`La session a ete mise a jour, bienvenue ${req.session.user.username} !`)
             console.log(req.session)
-
-            //on envoi le nouveau mot de passe par mail 
-            sendEmail(emailaddress, password)
 
             //on renvoi le resultat (on ne lui envoi pas le password)
 

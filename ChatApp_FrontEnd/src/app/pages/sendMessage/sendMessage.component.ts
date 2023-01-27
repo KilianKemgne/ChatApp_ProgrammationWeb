@@ -5,14 +5,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { messageService } from 'src/app/shared/message/message.service';
 
-
-/*declare interface TableData {
-  headerRow: string[];
-  dataRows;
-}
-*/
-
-
 @Component({
   selector: 'app-sendMessage',
   templateUrl: './sendMessage.component.html',
