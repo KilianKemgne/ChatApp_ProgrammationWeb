@@ -1,5 +1,5 @@
 //const sequelize = require('./user.model');
-const {SMS, sequelize} = require('../modele/sms.model')
+const {SMS, sequelize} = require('../modele/SMS.model')
 const {Contact} = require('../modele/contact.model')
 const {sendSms} = require('../endpoints/EnvoiSMS')
 const { conflicts } = require('yargs')
