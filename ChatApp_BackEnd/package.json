@@ -15,7 +15,8 @@
     "nodejs-nodemailer-outlook": "^1.2.4",
     "nodemon": "^2.0.20",
     "sequelize": "^6.28.0",
-    "webmail-api": "^0.1.6"
+    "webmail-api": "^0.1.6",
+    "yargs": "^17.6.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
