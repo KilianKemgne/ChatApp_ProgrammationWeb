@@ -91,4 +91,11 @@ export class UserService {
     console.log('body:', body)
     return this.http.post(environment.apiBaseUrl+'/updateuserpassword', body,{'headers':headers})
   }
+
+  numbermessagescontacts(idCOntact): Observable<any> {
+    const headers = {'content-type': 'application/json'}  
+    const body = idCOntact;
+    console.log('body:', body)
+    return this.http.post(environment.apiBaseUrl+'/numbermessagescontacts', body,{'headers':headers})
+  }
 }

@@ -46,7 +46,7 @@ export class NewPasswordComponent implements OnInit{
     //console.log(this.updateUser.value);
     this.userService.newUserPassword(this.updateUser.value).subscribe(
       res => {
-        localStorage.removeItem('connectedUser')
+        //localStorage.removeItem('connectedUser')
         this.router.navigateByUrl('/login')
       },
       err => {

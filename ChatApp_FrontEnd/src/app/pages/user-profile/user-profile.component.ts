@@ -19,7 +19,7 @@ export class UserProfileComponent implements OnInit {
   phoneNumberRegex = /^6[0-9]{8}$/;
 
   constructor(public userService: UserService,private router : Router) { }
-
+  number
   ngOnInit() {
     if(!this.userService.isLoggedIn()){
       this.router.navigateByUrl('/login');
@@ -31,6 +31,16 @@ export class UserProfileComponent implements OnInit {
       emailAddress: this.userDetails.emailaddress,
       phoneNumber: this.userDetails.phonenumber,
     }
+
+    this.userService.numbermessagescontacts({iduser: JSON.parse(localStorage.getItem('connectedUser')).id}).subscribe(
+      res => {
+          this.number = res;
+      },
+      err => {
+        console.log('An error occured !');
+        
+      }
+    )
   }
 
   onSubmit(form: NgForm) {

@@ -11,7 +11,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 export class ContactService {
 
   // Node/Express API
-  REST_API: string = 'http://127.0.0.1:5000/contacts';
+  REST_API: string = 'https://parrot-backend.hirodiscount.com/contacts' //'http://127.0.0.1:5000/contacts';
   // Http Header
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }

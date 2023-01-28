@@ -3,11 +3,10 @@
         <form    [formGroup]="sendMessage" (ngSubmit)="sendMessage.valid && onSubmit()">
     
             <div class="nav-top">
-            
     
-                <div class="group-inp1 mx-1"> 
+                <div class="group-inp1 mx-2"> 
                 
-                    <input class="form-control"  formControlName="idcontact"  name="idcontact" placeholder="               Phone Number          " minlength="1" maxlength="1500">
+                    <input class="form-control"  formControlName="idcontact"  name="idcontact" placeholder="Enter Phone Number" minlength="1" maxlength="1500">
                         
                 </div>
     
@@ -28,8 +27,6 @@
     
     
             <div class="container-inputs-stuffs" >
-    
-    
     
                 <div class="group-inp mx-1">
                     <input class="form-control"   formControlName="content" name="content" placeholder="Enter your message here" minlength="1" maxlength="1500">

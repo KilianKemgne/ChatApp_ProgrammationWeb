@@ -16,15 +16,21 @@ export class DashboardComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) { }
 
+  number : any;
   ngOnInit() {
-    if(!this.userService.isLoggedIn())
+    if(!this.userService.isLoggedIn()){
       this.router.navigateByUrl('/login');
+    }
+    this.userService.numbermessagescontacts({iduser: JSON.parse(localStorage.getItem('connectedUser')).id}).subscribe(
+      res => {
+          this.number = res;
+      },
+      err => {
+        console.log('An error occured !');
+        
+      }
+    )
+
   }
 
-  
-
-  onLogout(){
-    
-  }
-  
 }
