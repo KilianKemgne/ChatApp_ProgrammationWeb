@@ -1,41 +1,63 @@
 <div class="header bg-gradient-success pb-8 pt-5 pt-md-8">
     <div class="chat-global">
-        <form    [formGroup]="sendMessage" (ngSubmit)="sendMessage.valid && onSubmit()">
+        <form    [formGroup]="sendMessage" (ngSubmit)="sendMessage.valid && OnSubmit()">
     
             <div class="nav-top">
-            
     
-                <div class="group-inp1 mx-1"> 
-                
-                    <input class="form-control"  formControlName="idcontact"  name="idcontact" placeholder="               Phone Number          " minlength="1" maxlength="1500">
+                <div class="group-inp1 mx-2"> 
+                <!--
+                    <select class="form-control" type="checkbox"  formControlName="idcontact"  name="idcontact" id="idcontact" multiple  >
                         
+                        <option value="selected">selectionnez un ou plusieurs contact</option>
+                        <option *ngFor="let contact of contactsList" value={{contact.id}} >
+                            
+                            {{contact.username}}, {{contact.phonenumber}}
+                        </option>
+                    </select> -->
+                  <div>
+                    <div class="selectBox"  (click)="showCheckboxes()" >
+                        <select >
+                            <option>Selectionner contact(s)</option>
+                        </select>
+                        <div class="overSelect"></div>
+
+                    </div>
+                    <div id="checkboxes" >
+                        <label  *ngFor="let contact of contactsList">
+                          <input type="checkbox"    name={{contact.username}} id={{contact.id}} />{{contact.username}}, {{contact.phonenumber}}
+                        </label>
+                        <a id="btncont"  (click)="collectValue()">OK</a> 
+                      </div>
+                    </div> 
+                      
                 </div>
     
-                <div class="logos-call">
-                    <a routerLinkActive="active" [routerLink]="['/contacts']">
+                <div class="logos-call" *ngFor="let i of namecontact" >
+                   <span> {{i}},</span>
+                  <!--  <a routerLinkActive="active" [routerLink]="['/contacts']">
                         <button class="submit-msg-btn1">
                             <img src="../../../assets/img/téléchargement (1).png">
                         </button>
                     </a>
-                
+                -->
                 </div>
             </div>
+            
     
             <div class="conversation">
-          
+               
+
             </div>
     
     
     
             <div class="container-inputs-stuffs" >
     
-    
-    
                 <div class="group-inp mx-1">
                     <input class="form-control"   formControlName="content" name="content" placeholder="Enter your message here" minlength="1" maxlength="1500">
                 </div>
     
-                <button class="submit-msg-btn" type="submit">
+                <button class="submit-msg-btn" type="submit"  >
                     <img src="../../../assets/img/send.svg">
                 </button>
     

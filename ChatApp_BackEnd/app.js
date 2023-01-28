@@ -5,12 +5,13 @@ const routerConnexion = require('./endpoints/Connexion')
 const routerInscription = require('./endpoints/Inscription')
 const routerForgotPassword = require('./endpoints/RecuperationMotDePasse')
 const routerPublic = require('./endpoints/Public')
-const routerSMS = require('./endpoints/EnvoiSMS')
+//const routerSMS = require('./endpoints/EnvoiSMS')
 const routerMessages = require('./endpoints/SauvegardeRecuperationMessages')
 const routerContacts = require('./endpoints/SauvegardeRecuperationContacts')
 const verifyCode = require('./endpoints/Verifycode')
 const userProfile = require('./endpoints/Userprofile')
 const updateUser = require('./endpoints/Updateuser')
+const updateUserPassword = require('./endpoints/UpdateuserPassword')
 
 const app = express()
 
@@ -45,12 +46,13 @@ app.use('/', routerPublic) // exposition du endpoint public (the home page)
 app.use('/connexion', routerConnexion) // exposition du endpoint connexion
 app.use('/inscription', routerInscription) // exposition du endpoint d'inscription
 app.use('/forgot-password', routerForgotPassword) // exposition du endpoint de mot de passe oubie
-app.use('/sms', routerSMS) // exposition du endpoint d'envoi de sms
+//app.use('/sms', routerSMS) // exposition du endpoint d'envoi de sms
 app.use('/messages', routerMessages) // exposition du endpoint de sauvegarde et de recuperation de messages
 app.use('/contacts', routerContacts) // exposition du endpoint de sauvegarde et de recuperation de contacts
 app.use('/verifycode', verifyCode) // endpoint to verify the code
 app.use('/userprofile', userProfile) // endpoint to get the profile of a specific user 
 app.use('/updateuser', updateUser) // endpoint to update user informations
+app.use('/updateuserpassword', updateUserPassword) 
 
 app.get('/deconnexion', async (req, res, next)=>{
     // on detruit la session et on va a l'acceuil (/)

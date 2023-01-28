@@ -33,6 +33,7 @@ import { MessagesComponent } from 'src/app/pages/messages/messages.component';
     UserProfileComponent,
     NewContactComponent,
     ImportContactComponent,
+    NewContactComponent,
     SendMessageComponent,
     MessagesComponent
   ]

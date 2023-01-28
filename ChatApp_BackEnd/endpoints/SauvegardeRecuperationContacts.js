@@ -18,7 +18,7 @@ router.put('/:id', contactController.update);
 
 // Route pour supprimer un contact par ID
 router.delete('/:id', contactController.delete);
+router.post('/import',contactController.importContact)
 
 module.exports = router;
-
 

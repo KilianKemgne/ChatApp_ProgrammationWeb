@@ -1,7 +1,11 @@
 //const sequelize = require('./user.model');
 const {SMS, sequelize} = require('../modele/sms.model')
+const {Contact} = require('../modele/contact.model')
+const {sendSms} = require('../endpoints/EnvoiSMS')
+const { conflicts } = require('yargs')
+const { SequelizeScopeError } = require('sequelize')
 
-
+let cont
 //ajouter un sms de test
 /*SMS.create({
     content: 'nono',
@@ -62,6 +66,18 @@ exports.create = async (req, res) => {
             iduser: iduser,
             idcontact: idcontact[i]
         })
+
+        const cont = await Contact.findAll({
+            where: {
+                id: sms.idcontact
+            }
+        })
+        cont.map((content) => {
+            console.log(content);
+            console.log(content.dataValues.phonenumber);
+           // sendSms(content.dataValues.phonenumber, sms.content)
+        })
+        
 
         //Verification 
         if (!sms) {

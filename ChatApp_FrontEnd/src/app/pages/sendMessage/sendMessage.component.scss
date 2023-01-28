@@ -6,14 +6,14 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    height: 100vh;
+    height: 50vh;
 }
 
 .chat-global {
     width: 600px;
-    height: 700px;
+    height: 300px;
     margin: 0 auto;
-    border-radius: 25px;
+    border-radius: 25px !important;
     box-shadow: 0 30px 70px 0px rgba(0,0,0,0.2);
     display: flex;
     justify-content: flex-end;
@@ -38,6 +38,8 @@ body {
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
     
 }
 
@@ -72,11 +74,11 @@ body {
 }
 
 .logos-call {
-    width:fit-content !important;
-    height: fit-content !important;
-    display: flex;
-    background: #486ea7;
-    border-radius: 50px;
+    width:fit-content ;
+    height: fit-content ;
+    display: inline-flex;
+    background: white;
+    border-radius: 3px;
     
     
 
@@ -87,7 +89,48 @@ body {
   
 
 }
+.selectBox {
+    position: relative;
+  }
+  
+  .selectBox select {
+    width: 100%;
+    border-radius: 25px !important;
+    height: 30px;
+  }
+  
+  .overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  
+  #checkboxes {
+    display: none;
+    border-radius: 25px  solid;
+    background-color: white;
 
+
+  }
+  #checkboxes label {
+    display: block;
+
+  }
+  
+  #checkboxes label:hover {
+    background-color: #b9bcc0;
+  }
+
+  #btncont{
+    width: fit-content ;
+    height: fit-content ;
+    background-color: #33c796 !important;
+    color:white ;
+    border-radius: 35px !important;
+    float: right;
+  }
 
 /* **********CONVERSATION********** */
 
@@ -127,9 +170,15 @@ body {
 .container-inputs-stuffs {
     background: #486ea7;
     display: flex !important;
-    height: 60px;
+    height: 70px;
     border-radius: 0px  0 0 0px;
     align-items: center;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     justify-content: space-between !important;
 }
 
@@ -140,6 +189,8 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-left: 15 px !important;
+    margin-right: 10px;
+    border-radius: 25px;
 }
 
 .group-inp1 {
@@ -210,15 +261,19 @@ body {
 
 .submit-msg-btn {
     background: #fff;
-    border-radius: 25% !important;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
     width:fit-content !important;
     border: none;
     display: flex;
     padding-right: 5px;
+    padding-left: 5px;
     justify-content: center;
     align-items: center;
-    margin-right: 15px;
-    
+    width: 40px;
+    height: 40px;
 }
 
 .submit-msg-btn1 {
@@ -229,7 +284,6 @@ body {
     border: 20px;
     display: flex;
     border-radius: 50% !important;
-    margin-right: 10px !important;
     
 }
 
@@ -237,11 +291,15 @@ body {
 
 .submit-msg-btn1 img {
     width: 30px;
-    height: 30px;
-    
+    height: 30px;  
 }
 
 
 .submit-msg-btn img {
-    width: 30px;
+    width: 25px;
+}
+
+.form-control {
+    border-radius: 20px;
+    padding-left: 20px;
 }

@@ -1,18 +1,24 @@
-// const createClient = require('webmail-api')
- 
-// const client = createClient('gmail', 'ya28.zxydjsakdaskdsa')
- 
-// // Addresses
-// const steve = { address: 'stevelening@gmail.com' }
-// const lening = { name: 'lening steve', address: 'micheltalaupa@gmail.com' }
- 
-// // Send an email
-// async function sendEmail(){
-//     await client.send({ from: lening, to: steve, subject: 'petit test', body: 'Hello, World!' })
-// }
+// A continuer pour envoyer un mail
 
-// sendEmail()
+let nodeoutlook = require('nodejs-nodemailer-outlook')
 
-// setTimeout(()=>{console.log('envoi en cours')}, 1000)
+function SendEmail (receiver, code){
+    nodeoutlook.sendEmail({
+        auth: {
+            user: "stevelening@outlook.fr",
+            pass: "Mars2002"
+        },
+        from: 'stevelening@outlook.fr',
+        to: receiver,
+        subject: 'Code de validation',
+        text: 'Votre code de validation est : '+code,
+        onError: (e) => console.log(e),
+        onSuccess: (i) => console.log(i)
+    })
+}
 
+// testons la methode SendEmail
+// SendEmail('micheltalaupa@gmail.com', '5462')
+
+module.exports = SendEmail
  

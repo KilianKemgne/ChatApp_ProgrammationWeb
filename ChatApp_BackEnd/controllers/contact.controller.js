@@ -1,4 +1,6 @@
 const {Contact, sequelize} = require('../modele/contact.model')
+const {sendSms} = require('../endpoints/EnvoiSMS')
+
 
 // Fonction pour récupérer tous les contacts
 exports.findAll = (req, res) => {
@@ -18,6 +20,7 @@ exports.create = (req, res) => {
         iduser: req.body.iduser,
     }).then((contact) => {
         res.status(200).json(contact);
+
     }).catch((error) => {
         res.status(400).json(error);
     });
@@ -65,5 +68,30 @@ exports.delete = (req, res) => {
         res.status(400).json(error);
     });
 };
+
+// Import Contact from excel file
+exports.importContact = (req, res) => {
+    
+
+    let contacts = []
+
+    for (let i in req.body.data) {
+       contacts.push({
+        username: req.body.data[i].name,
+        phonenumber: req.body.data[i].tel,
+        iduser: req.body.id
+       })
+    }
+
+    Contact.bulkCreate(
+        contacts,
+        {
+          ignoreDuplicates: true,
+        }
+      ).then(() => res.status(200).json({message: "Contacts data have been saved"}))
+      .catch((error) => {
+        res.status(400).json(error)
+      });
+}
 
 

@@ -41,9 +41,9 @@ export class UserService {
     return this.http.post(environment.apiBaseUrl+'/connexion', body,{'headers':headers})
   }
 
-  getUserProfile(id): Observable<any> {
+  getUserProfile(phonenumber): Observable<any> {
     const headers = {'content-type': 'application/json'}  
-    const body = id;
+    const body = phonenumber;
     console.log(body)
     return this.http.post(environment.apiBaseUrl+'/userprofile', body,{'headers':headers})
   } 
@@ -83,5 +83,12 @@ export class UserService {
     const body = user;
     console.log('body:', body)
     return this.http.post(environment.apiBaseUrl+'/updateuser', body,{'headers':headers})
+  }
+
+  newUserPassword(user): Observable<any> {
+    const headers = {'content-type': 'application/json'}  
+    const body = user;
+    console.log('body:', body)
+    return this.http.post(environment.apiBaseUrl+'/updateuserpassword', body,{'headers':headers})
   }
 }

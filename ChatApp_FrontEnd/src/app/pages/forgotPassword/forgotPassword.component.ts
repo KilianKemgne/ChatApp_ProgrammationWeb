@@ -18,6 +18,7 @@ export class ForgotPasswordComponent implements OnInit{
   }
 
   onSubmit(form : NgForm){
+    localStorage.setItem("phonenumber", JSON.stringify(form.value))
     this.userService.forgotPassword(form.value).subscribe(
       res => {
         if(Object.keys(res).length == 0){
