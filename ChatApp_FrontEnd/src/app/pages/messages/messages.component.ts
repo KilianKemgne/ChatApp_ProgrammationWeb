@@ -58,6 +58,7 @@ export class MessagesComponent implements OnInit {
         alert('An error occured !');
       }
     );
+    this.ngOnInit
   }
   
   onLogout(){
