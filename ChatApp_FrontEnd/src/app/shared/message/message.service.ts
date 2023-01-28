@@ -18,7 +18,7 @@ export class messageService {
   };
 
  // Node/Express API
- REST_API: string = 'http://127.0.0.1:5000/messages';
+ REST_API: string = 'https://parrot-backend.hirodiscount.com/messages';
 
  noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
 
