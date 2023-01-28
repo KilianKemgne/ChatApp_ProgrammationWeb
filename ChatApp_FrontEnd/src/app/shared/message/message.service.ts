@@ -14,11 +14,14 @@ export class messageService {
     Content: '',
     creationDate: '',
     iduser: JSON.parse(localStorage.getItem('connectedUser')).id,
-    idcontact: '',
+    idcontact: ''
   };
 
  // Node/Express API
  REST_API: string = 'http://127.0.0.1:5000/messages';
+
+ noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
+
   constructor(private http: HttpClient) { } 
 
   
@@ -26,7 +29,7 @@ export class messageService {
     return this.http.get(`${this.REST_API}`);
   }
 
-  createSMS(sms: SMS) {
+  createSMS(sms: Object) {
     return this.http.post(`${this.REST_API}/newsms`, sms);
   }
 
@@ -34,11 +37,11 @@ export class messageService {
     return this.http.get(`${this.REST_API}/${id}`);
   }
 
-  getSMSbyContact(id: number, contact: Object) {
+  getSMSbyContact() {
     return this.http.get(`${this.REST_API}/congroupby`);
   }
 
-  deleteContact(id: number) {
+  deleteMessage(id: number) {
     return this.http.delete(`${this.REST_API}/${id}`);
   }
 }

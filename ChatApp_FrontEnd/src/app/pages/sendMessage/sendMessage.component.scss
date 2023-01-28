@@ -20,6 +20,10 @@ body {
     flex-direction: column;
     position: relative;
     top: 50px;
+    background-color: #fff !important;
+}
+#idcontact{
+    margin-left: 15px !important;
 }
 
 .nav-top {
@@ -33,6 +37,7 @@ body {
     border-bottom: 1px solid rgba(51,51,51,0.2);
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
+    align-items: center;
     
 }
 
@@ -67,10 +72,12 @@ body {
 }
 
 .logos-call {
-    width: 90px;
+    width:fit-content !important;
+    height: fit-content !important;
     display: flex;
     background: #486ea7;
     border-radius: 50px;
+    
     
 
 }
@@ -91,7 +98,7 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     overflow:hidden;
-    background-color: aqua;
+    background-color: #fff !important;
 }
 /* **********FORM********** */
 .chat{
@@ -118,11 +125,12 @@ body {
 }
 
 .container-inputs-stuffs {
-    background: #fff;
-    display: flex;
-    width: 90%;
+    background: #486ea7;
+    display: flex !important;
     height: 60px;
-    border-radius: 9999px;
+    border-radius: 0px  0 0 0px;
+    align-items: center;
+    justify-content: space-between !important;
 }
 
 .group-inp {
@@ -131,6 +139,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-left: 15 px !important;
 }
 
 .group-inp1 {
@@ -201,14 +210,15 @@ body {
 
 .submit-msg-btn {
     background: #fff;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    width: 70px;
+    border-radius: 25% !important;
+    width:fit-content !important;
     border: none;
     display: flex;
     padding-right: 5px;
     justify-content: center;
     align-items: center;
+    margin-right: 15px;
+    
 }
 
 .submit-msg-btn1 {
@@ -218,6 +228,8 @@ body {
     width: 30px;
     border: 20px;
     display: flex;
+    border-radius: 50% !important;
+    margin-right: 10px !important;
     
 }
 

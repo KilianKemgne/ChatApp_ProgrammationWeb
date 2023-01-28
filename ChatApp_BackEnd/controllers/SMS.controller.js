@@ -26,8 +26,9 @@ exports.findAll = async (req, res) => {
     console.log("Finding all SMS")
     console.log("SMS", SMS)
     const sms = await SMS.findAll({
+        
         order: [
-            ['creationdate', order]
+            ['createdAt', order]
         ]
     })
     console.log("SMS  =>", sms)
@@ -38,11 +39,10 @@ exports.findAll = async (req, res) => {
 
 exports.create = async (req, res) => {
     // recovery the paremeter of the request
-    const {content, idcontact} = req.body
+    const {iduser ,content, idcontact} = req.body
     //Equivalennt to: const content = req.body.content
     //Equivalent to : const iduser = req.body.iduser
     //Equivalent to : const idcontact = req.body.idcontact
-    const iduser= JSON.parse(localStorage.getItem('connectedUser'))['id']
     //Creation of the date
     const creationdate = new Date()
 
@@ -53,9 +53,9 @@ exports.create = async (req, res) => {
         return;
     }
 
-    //Creer un SMS pour chaque contact et l'ajouter a la BD
+    //Create a sms for each contact
     for (let i = 0; i < idcontact.length; i++) {
-        //Creation du SMS
+        //Creation of the SMS
         const sms = await SMS.create({
             content: content,
             creationdate: creationdate,
@@ -63,7 +63,7 @@ exports.create = async (req, res) => {
             idcontact: idcontact[i]
         })
 
-        //Verification si le SMS a ete ajoute a la BD
+        //Verification 
         if (!sms) {
             //500 : Internal Server Error
             res.status(500).send({message: "Erreur lors de l'ajout du SMS"})
@@ -82,7 +82,7 @@ exports.findOneCon = async (req, res) => {
     //Recuperation of the order specify by the user
     const order = req.query.order || "desc"
 
-    // pour les sms
+
     console.log("Finding all SMS for a specific contact")
     console.log("SMS", SMS)
     const sms = await SMS.findAll({
@@ -103,10 +103,10 @@ exports.findbycon = async (req, res) => {
     // "/?order=desc"  // from the newest to the oldest
     // "/?order=asc"   // from the oldest to the newest
 
-    //Recuperation de l'ordre
+    //Recuperation of the order
     const order = req.query.order || "desc"
 
-    // pour les sms
+    // for the sms
     console.log("Finding all SMS grouped by contact")
     console.log("SMS", SMS)
     let sms = await SMS.findAll({

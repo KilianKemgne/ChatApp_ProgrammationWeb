@@ -3,19 +3,19 @@ const router = express.Router()
 const SMSController = require('../controllers/SMS.controller')
 
 
-// Route pour récupérer tous les contacts
+// path to get all the sms
 router.get('/', SMSController.findAll);
 
-// Route pour créer un nouveau contact
+// path to create a new sms
 router.post('/newsms', SMSController.create);
 
-// Route pour récupérer un contact par ID
+// path to get the sms send to one contact
 router.get('/:id', SMSController.findOneCon);
 
-// Route pour mettre à jour un contact par ID
+// path to get all the sms by contact
 router.get('/congroup', SMSController.findbycon);
 
-// Route pour supprimer un contact par ID
+// path to delete a sms
 router.delete('/:id', SMSController.delete);
 
 module.exports = router;

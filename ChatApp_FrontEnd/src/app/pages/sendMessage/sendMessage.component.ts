@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { messageService } from 'src/app/shared/message/message.service';
 
@@ -11,6 +12,7 @@ import { messageService } from 'src/app/shared/message/message.service';
 }
 */
 
+
 @Component({
   selector: 'app-sendMessage',
   templateUrl: './sendMessage.component.html',
@@ -18,14 +20,27 @@ import { messageService } from 'src/app/shared/message/message.service';
 })
 export class SendMessageComponent implements OnInit {
 
-  constructor(private messageService: messageService, private router: Router) { }
+  sendMessage: FormGroup;
+
+  constructor(private messageService: messageService, private router: Router, private formBuilder : FormBuilder) { 
+    this.sendMessage = formBuilder.group({
+      content: '',
+      creationDate: '',
+      iduser: JSON.parse(localStorage.getItem('connectedUser')).id,
+      idcontact: ''
+    })
+}
+  
 
   ngOnInit() {
   }
 
-  onSubmit(form: NgForm) {
-    console.log(form.value)
-    this.messageService.createSMS(form.value).subscribe(
+  onSubmit() {
+    
+     const contact = (this.sendMessage.value.idcontact).split(",");
+     this.sendMessage.value.idcontact = contact;
+     console.log(this.sendMessage.value);
+    this.messageService.createSMS(this.sendMessage.value).subscribe(
       res => {
         alert('SMS saved successfully!')
       },
@@ -33,10 +48,27 @@ export class SendMessageComponent implements OnInit {
         alert('An error occured !')
       }
     );
+    /*this.contactService.getContact(this.sendMessage.value.idcontact).subscribe(
+        res =>{
+          this.contact=res;
+          console.log(this.contact);
+
+        }
+    );*/
+    /*this.messageService.createSMS(this.sendMessage.value).subscribe(
+      res => {
+        alert('SMS saved successfully!')
+      },
+      err => {
+        alert('An error occured !')
+      }
+    );*/
+
   }
 
   onLogout(){
     
   }
+  
   
 }
