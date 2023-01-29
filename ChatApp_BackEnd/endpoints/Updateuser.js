@@ -31,7 +31,6 @@ async function checkUser(id) {
                 username = res.dataValues.username
                 phonenumber = res.dataValues.phonenumber
                 emailaddress = res.dataValues.emailaddress
-                // on met a jour ses donnees dans la table user
                 if(newusername != username || newemailaddress != emailaddress || newphonenumber != phonenumber){
                     username = newusername
                     emailaddress = newemailaddress
@@ -60,7 +59,7 @@ async function checkUser(id) {
 }
 
 router.post('/', (req, res, next)=>{
-    // on recupere le corps de la requete post
+    
     id = req.body.id
     newusername = req.body.userName
     newemailaddress = req.body.emailAddress
@@ -69,16 +68,14 @@ router.post('/', (req, res, next)=>{
     console.log('\n', req.body)
     console.log('req.session:', req.session)
  
-    // on verifie si cet utilisateur existe dans la BD (on hache le mot de passe)
     checkUser(id)
 
-    // on renvoie le resultat de la requete au client
     setTimeout(()=>{
-        // on va juste patienter 50 millisecondes pour que le resultat de la requete soit disponible
+       
         console.log('req.session:', req.session)
         if(username == undefined || phonenumber == undefined){
-            //on retourne une erreur
-            res.send({})// on renvoi une erreur
+            
+            res.send({})
             console.log('utilisateur inexistant')
         }
         else{
