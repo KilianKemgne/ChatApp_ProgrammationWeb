@@ -8,7 +8,7 @@ const UserModel = require('../modele/user.model')
 const User = UserModel.User
 const sequelize = UserModel.sequelize
 
-// // on teste la connexion a la base de donnees
+
 sequelize.authenticate()
     .then(()=>{
         console.log('Connection a la BD reussie')
@@ -26,7 +26,7 @@ async function createUser(username, password, phonenumber, emailaddress) {
     userExist = false
 
     const resp = await sequelize.sync().then(()=>{
-        // on verifie d'abord qu'un utilisateur ayant ces identifiants (username, password) n'existe pas dans la BD
+        
         User.findOne({
             where: {
                 username: username,
@@ -41,7 +41,7 @@ async function createUser(username, password, phonenumber, emailaddress) {
             console.error("Echec de recherche des utilisateurs")
         })
 
-        // si on ne trouve aucun usilisateur avec ses identifiants, alors on ajoute notre utilisateur
+      
         if(!userExist){
             User.create({
                 username: username,
@@ -72,10 +72,8 @@ router.post('/', (req, res, next)=>{
     console.log('\nreq.body:', req.body)
     console.log('req.session:', req.session)
 
-    // on ajoute ces informations dans la base de donnees (on cree un nouvel utilisateur avec ces informations)
     createUser(username, md5(password), phonenumber, emailaddress)
 
-    // on renvoie le resultat de la requete au client
     setTimeout(()=>{
         if(status){
             res.send({'id': id, 'username': username, 'phonenumber': phonenumber})
