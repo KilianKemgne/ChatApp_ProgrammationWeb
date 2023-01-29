@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'https://parrot-backend.hirodiscount.com' //'http://127.0.0.1:5000' // our server adress
+  //apiBaseUrl: 'https://parrot-backend.hirodiscount.com' // adresse de notre serveur
+  apiBaseUrl: 'https://parrot-backend-production.up.railway.app'
 };
 
 /*
