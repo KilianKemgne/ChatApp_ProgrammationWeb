@@ -58,20 +58,15 @@ async function getNumberofMessages(iduser) {
 }
 
 router.post('/', (req, res, next)=>{
-    // on recupere le corps de la requete post
     iduser = req.body.iduser
     console.log('req.body :', req.body)
  
-    // on reccupere le nombre de contacts
     getNumberofContacts(iduser)
 
-    // on reccupere le nombre de sms
     getNumberofMessages(iduser)
 
-    // on renvoie le resultat de la requete au client
     setTimeout(()=>{
         console.log('Nombre de contacts :', nbcontact, ', Nombre de messages :', nbsms)
-        //on renvoi le resultat
         res.send({'iduser': iduser, 'nbcontact': nbcontact, 'nbsms': nbsms})
     }, 200)
 })
