@@ -2,7 +2,7 @@ const {Contact, sequelize} = require('../modele/contact.model')
 const {sendSms} = require('../endpoints/EnvoiSMS')
 
 
-// Fonction pour récupérer tous les contacts
+
 exports.findAll = (req, res) => {
     Contact.findAll().then(contacts => {
         // envoie de tous les contacts au client
@@ -12,7 +12,7 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Fonction pour créer un nouveau contact
+
 exports.create = (req, res) => {
     Contact.create({
         username: req.body.username,
@@ -26,7 +26,7 @@ exports.create = (req, res) => {
     });
 };
 
-// Fonction pour récupérer un contact par ID
+
 exports.findOne = (req, res) => {
     Contact.findByPk(req.params.id)
         .then((contact) => {
@@ -39,7 +39,7 @@ exports.findOne = (req, res) => {
         });
 };
 
-// Fonction pour mettre à jour un contact par ID
+
 exports.update = (req, res) => {
     Contact.update({
         username: req.body.username,
@@ -56,7 +56,7 @@ exports.update = (req, res) => {
     });
 };
 
-// Fonction pour supprimer un contact par ID
+
 exports.delete = (req, res) => {
     Contact.destroy({
         where: {
@@ -69,7 +69,7 @@ exports.delete = (req, res) => {
     });
 };
 
-// Import Contact from excel file
+
 exports.importContact = (req, res) => {
     
 
