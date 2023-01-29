@@ -1,10 +1,11 @@
 
-// on cree cette variable qui contiendra le host et le port sur lesquels sont lances notre serveur
+// we create this variable which will contain the host and the port on which our server is launched
 const Variable = {
-    // pour le serveur 
+    // for the  server 
     HOST: '127.0.0.1',
     PORT: '5000',
-    // pour la bd
+    
+    // for data base
     DB_NAME: 'parrot',
     USER_NAME: 'doadmin',
     USER_PASSWORD: 'AVNS_3mb1DazluwwcLgI6cHU',
