@@ -5,7 +5,7 @@ const {sendSms} = require('../endpoints/EnvoiSMS')
 
 exports.findAll = (req, res) => {
     Contact.findAll().then(contacts => {
-        // envoie de tous les contacts au client
+        
         res.send(contacts);
     }).catch((error) => {
         console.error("Echec de recherche des contacts", error)
