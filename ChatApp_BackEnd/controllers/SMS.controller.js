@@ -6,24 +6,11 @@ const { conflicts } = require('yargs')
 const { SequelizeScopeError } = require('sequelize')
 
 let cont
-//ajouter un sms de test
-/*SMS.create({
-    content: 'nono',
-    creationdate:  new Date('2023-02-10'),
-    iduser: 2,
-    idcontact: 1
-}).then((sms)=>{
-    console.log(sms)
-}).catch((error)=>{
-    console.error("Echec de creation de l'utilisateur", error)
-})*/
 
-// rechercher tous les sms
+// find all  sms
 exports.findAll = async (req, res) => {
-    // "/?order=desc"  // from the newest to the oldest
-    // "/?order=asc"   // from the oldest to the newest
+   
 
-    //Recuperation de l'ordre
     const order = req.query.order || "desc"
 
 
@@ -37,7 +24,7 @@ exports.findAll = async (req, res) => {
     })
     console.log("SMS  =>", sms)
 
-    //200 : OK
+  
     res.status(200).send(sms)
 }
 
